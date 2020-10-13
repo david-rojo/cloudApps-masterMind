@@ -1,5 +1,7 @@
 # Welcome to MasterMind! **(domainModel)**
 
+Read [documentation](docs/README.md) first please
+
 ### 1. Prerequesites
 - [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Maven](https://maven.apache.org/install.html)
