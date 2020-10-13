@@ -1,6 +1,6 @@
 # MasterMind - domainModel 
 
-### 1. Requesites
+### 1. Requirements
 
 - [Rules](https://en.wikipedia.org/wiki/Mastermind_(board_game))
 - [Video](https://www.youtube.com/watch?v=dMHxyulGrEk)
