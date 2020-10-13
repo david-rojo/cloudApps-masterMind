@@ -22,24 +22,24 @@ public enum Message {
 		this.message = message;
 	}
 	
-	void write() {
+	public void write() {
 		
 		Console.instance().write(this.message);
 	}
 
-	void writeln() {
+	public void writeln() {
 		
 		Console.instance().writeln(this.message);
 	}
 
-	void writeln(int blacks, int whites) {
+	public void writeln(int blacks, int whites) {
 		
 		assert this == Message.RESULT;
 
 		Console.instance().writeln(this.message.replaceAll("#b", "" + blacks).replaceAll("#w", "" + whites));		
 	}
 	
-	void writeln(int attempts) {
+	public void writeln(int attempts) {
 		
 		assert this == Message.ATTEMPTS;
 

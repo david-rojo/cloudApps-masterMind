@@ -18,7 +18,7 @@ public enum Error {
 		this.message = message;
 	}
 
-	void writeln() {
+	public void writeln() {
 		if (!this.isNull()){
 			Console.instance().writeln(this.message);		
 		}

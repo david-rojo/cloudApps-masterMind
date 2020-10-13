@@ -13,7 +13,7 @@ public class ProposedCombination extends Combination {
 		do {
 			Message.PROPOSED_COMBINATION.write();
 			String candidateCombination = Console.instance().readString();
-			error = this.checkCombination(candidateCombination);
+			error = this.check(candidateCombination);
 			Console.instance().writeln();
 			if (!error.isNull()) {
 				this.populate(candidateCombination);
@@ -44,7 +44,7 @@ public class ProposedCombination extends Combination {
 		return this.colors[i] == color;
 	}
 	
-	private Error checkCombination(String candidateCombination) {
+	private Error check(String candidateCombination) {
 		
 		if (candidateCombination.length() != Result.SOLUTION_LENGTH) {
 			return Error.WRONG_LENGTH;
