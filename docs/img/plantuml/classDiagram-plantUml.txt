@@ -1,0 +1,162 @@
+# https://plantuml-editor.kkeisuke.com/#
+
+# MasterMind class diagram
+
+@startuml
+package "cloudapps.mastermind" {
+  
+  class MasterMind {
+    +void play()
+    -void playGame()
+    -boolean isResumedGame()
+    +{static} void main(String args[])    
+  }
+  
+  class Board {
+    -{static} final int MAX_ATTEMPS
+    -int attempts
+    +Board()
+    +void add(proposedCombination)
+    +boolean isFinished()
+    +boolean isLooser()
+    +boolean isWinner()
+    +void writeln()
+  }
+  
+  abstract class Combination {
+    ~Combination()
+  }
+  
+  class SecretCombination {
+    +SecretCombination()
+    +Result getResult(ProposedCombination)
+    +void writeln()
+    -generate()
+  }
+  
+  class ProposedCombination {
+    -Error check(String)
+    +boolean contains(Color)
+    +boolean contains(Color, int)
+    -void populate(String)
+    +void read()
+    -void write()  
+  }
+  
+  class Result {
+    +int SOLUTION_WIDTH = 4
+    -int blacks
+    -int whites
+    +Result(int, int)
+    +boolean isWinner()
+    +void writeln()
+  }
+  
+  enum Color {
+    RED
+    BLUE
+    YELLOW
+    GREEN
+    ORANGE
+    PURPLE
+    NULL_COLOR
+    -char initial
+    -Color()
+    -Color(char)
+    +boolean isNull()
+    +{static} Color get(int)
+    +void write()
+    +{static} int length()
+    +{static} Color getInstance(char)
+    +{static} String getInitials()
+  }
+  
+  enum Error {
+    DUPLICATED
+    WRONG_LENGTH
+    WRONG_COLORS
+    NULL_ERROR
+    +String message
+    -Error()
+    -Error(String)
+    +void writeln()
+    +boolean isNull()
+  }
+  
+  enum Message {
+    TITLE
+    PROPOSED_COMBINATION
+    RESUME
+    WINNER
+    LOOSER
+    ATTEMPTS
+    RESULT
+    -String message
+    -Message()
+    -Message(String)
+    +void write()
+    +void writeln()
+    +void writeln(int, int)
+    +void writeln(int)    
+  }
+  
+  MasterMind "board" *--> Board  
+  MasterMind ..> cloudapps.mastermind.utils.YesNoDialog
+  MasterMind ..> Message
+  MasterMind ..> ProposedCombination
+  
+  Combination "colors" *--> "4" Color
+  Combination <|-- SecretCombination
+  Combination <|-- ProposedCombination
+  SecretCombination ..> ProposedCombination  
+  SecretCombination ..> cloudapps.mastermind.utils.Console
+  ProposedCombination ..> Error
+  ProposedCombination ..> Message
+  ProposedCombination ..> cloudapps.mastermind.utils.Console
+    
+  Board "proposedCombinations" o--> "0..10" ProposedCombination
+  Board "results" o--> "0..10" Result
+  Board "secretCombination" *--> SecretCombination
+  Board ..> Message
+  Board ..> cloudapps.mastermind.utils.Console
+  
+  Result ..> Message
+  Message ..> cloudapps.mastermind.utils.Console
+  Error ..> cloudapps.mastermind.utils.Console
+  Color ..> cloudapps.mastermind.utils.Console  
+}
+
+package "cloudapps.mastermind.utils" {
+  
+  class YesNoDialog {
+    {static} -final char AFFIRMATIVE
+    {static} -final char NEGATIVE
+    {static} -final String SUFFIX
+    {static} -final String MESSAGE
+    -char answer
+    +boolean read(String)
+    -boolean isAfirmative()
+    -char getAnswer()
+    -boolean isNegative()
+  }
+  
+  class Console {
+    {static} +Console console
+    -BufferedReader bufferedReader
+    {static} +Console instance()
+    +String readString(String)
+    +String readString()
+    +int readInt(String)
+    +char readChar(String)
+    +void writeln()
+    +void write(String)
+    +void write(int)
+    +void writeln(String)
+    +void writeln(int)
+    +void write(char)
+    +void writeError(String) 
+  }
+  
+  YesNoDialog ..> Console
+}
+@enduml
