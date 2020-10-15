@@ -1,0 +1,39 @@
+# Package **cloudapps.mastermind.utils**
+
+@startuml
+
+package "cloudapps.mastermind.utils" {
+
+  class WithConsoleView {
+    #Console console
+    #WithConsoleView()
+  }
+  
+  class Console {
+    -BufferedReader bufferedReader
+    +Console()
+    +void write(char)
+    +void write(String)
+    +int readInt(String)
+    +char readChar(String)
+    +String readString(String)    
+    +void writeln(int)
+    +void writeln(String)
+    +void writeln()
+    +void writeError(String)
+
+  }
+  
+  class YesNoDialog {}
+  
+  WithConsoleView *--> Console
+  WithConsoleView <|-- YesNoDialog
+  Console *--> java.io.BufferedReader
+}
+
+package "java.io" {
+  
+  class BufferedReader {}
+
+
+@enduml

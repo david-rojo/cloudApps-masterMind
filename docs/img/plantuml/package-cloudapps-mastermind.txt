@@ -1,0 +1,30 @@
+# Package **cloudapps.mastermind**
+
+@startuml
+
+package "cloudapps.mastermind" {
+  
+  class MasterMind {
+    -Game game
+    -View view
+    -MasterMind()
+    -void play()
+    {static}+void main(String[])    
+  }
+  
+  MasterMind *--> cloudapps.mastermind.views.View
+  MasterMind *--> cloudapps.mastermind.models.Game
+
+}
+
+package "cloudapps.mastermind.views" {
+
+  class View {}
+}
+
+package "cloudapps.mastermind.models" {
+
+  class Game {}
+}
+
+@enduml

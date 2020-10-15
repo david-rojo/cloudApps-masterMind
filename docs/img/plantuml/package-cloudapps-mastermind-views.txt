@@ -1,0 +1,70 @@
+# Package **cloudapps.mastermind.views**
+
+@startuml
+
+package "cloudapps.mastermind.views" {
+
+  class View {
+    #Game game
+    -PlayView playView
+    -ResumeView resumeView
+    -StartView startView
+    +View(Game)
+    +void interact()
+  }
+  
+  class PlayView {}
+  
+  class ResumeView {}
+  
+  class StartView {}
+  
+  class MessageView {}
+  
+  class ColorView {}
+  
+  class ErrorView {}
+  
+  class ResultView {}
+  
+  class ProposedCombinationView {}
+  
+  class SecretCombinationView {}
+  
+  View *--> PlayView
+  View *--> StartView
+  View *--> ResumeView
+  View *--> cloudapps.mastermind.models.Game
+  
+  ResumeView ..> cloudapps.mastermind.models.Game
+  ResumeView ..> MessageView
+  
+  StartView ..> cloudapps.mastermind.models.Game
+  StartView ..> MessageView
+  
+  PlayView ..> cloudapps.mastermind.models.Game
+  PlayView ..> SecretCombinationView
+  PlayView ..> ProposedCombinationView
+  PlayView ..> ResultView
+  PlayView ..> ErrorView
+  
+  ProposedCombinationView ..> ColorView
+  ProposedCombinationView ..> MessageView
+  
+  SecretCombinationView ..> MessageView
+  ResultView ..> MessageView
+  
+  ErrorView ..> ColorView
+  
+  
+    
+}
+
+package "cloudapps.mastermind.utils" {
+
+  class WithConsoleView {}
+  
+}
+
+
+@enduml

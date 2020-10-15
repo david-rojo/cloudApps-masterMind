@@ -1,0 +1,58 @@
+# Package **cloudapps.mastermind.models**
+
+@startuml
+
+package "cloudapps.mastermind.models" {
+
+  class Game {
+    -Board board
+    
+    
+
+    +boolean isFinished()
+    
+  }
+  
+  class Board {
+    -SecretCombination secretCombination
+    -List<ProposedCombination> proposedCombination
+    -List<Result> results
+    +boolean isWinner()
+    +boolean isLooser()
+  }
+  
+  abstract class Combination {}
+  
+  class SecretCombination {}
+  
+  class ProposedCombination {}
+  
+  enum Color {}
+  
+  enum Error {}
+  
+  class Result {}
+  
+  Game *--> Board
+  Board *--> SecretCombination
+  Board --> ProposedCombination
+  Board *-->  java.util.List
+  Game *--> Result
+  
+  Combination <|-- SecretCombination
+  Combination <|-- ProposedCombination
+  Combination *--> Color
+  
+  SecretCombination ..> Result
+  SecretCombination ..> ProposedCombination
+  
+  ProposedCombination ..> Error
+  
+}
+
+package "java.util" {
+  
+  class List {}
+
+
+@enduml
