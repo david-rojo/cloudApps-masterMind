@@ -1,8 +1,5 @@
-# https://plantuml-editor.kkeisuke.com/#
+@startuml MasterMind class diagram
 
-# MasterMind class diagram
-
-@startuml
 package "cloudapps.mastermind" {
   
   class MasterMind {

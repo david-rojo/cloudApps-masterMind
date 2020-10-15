@@ -1,36 +1,42 @@
-# MasterMind domain diagram
+@startuml MasterMind domain diagram
 
-@startuml
 MasterMind *--> "2" Player
 MasterMind *--> Turn
 MasterMind *--> Board
+
+Board *--> SecretCombination
+Board o--> "0..10" ProposedCombination
+Board o--> "0..10" Result
+
 Turn --> "2" Player
 Player *--> Role
 Role <|-- MakerPlayer
 Role <|-- BreakerPlayer
 MakerPlayer --> SecretCombination
 BreakerPlayer --> "0..10" ProposedCombination
+
 Combination <|-- SecretCombination
 Combination <|-- ProposedCombination
 Combination *--> "4" ElementCombination
 ElementCombination o--> Color
 ElementCombination o--> Position
+
 Color <|-- Red
 Color <|-- Blue
 Color <|-- Yellow
 Color <|-- Green
 Color <|-- Orange
 Color <|-- Purple
-Board *--> SecretCombination
-Board o--> "0..10" ProposedCombination
-Board o--> "0..10" Result
+
 Result *--> "0..4" Success
+Result --> SecretCombination
+Result <|-- WinnerResult
+
 Success <|-- Black
 Success <|-- White
 Black --> Position
 Black --> Color
-Result --> SecretCombination
-Result <|-- WinnerResult
 WinnerResult *--> "4" Black
 BreakerPlayer --> WinnerResult
+
 @enduml
