@@ -1,6 +1,4 @@
-# Package **cloudapps.mastermind**
-
-@startuml
+@startuml Package **cloudapps.mastermind**
 
 package "cloudapps.mastermind" {
   

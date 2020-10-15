@@ -1,5 +1,3 @@
-# Package **cloudapps.mastermind.utils**
-
 @startuml
 
 package "cloudapps.mastermind.utils" {
