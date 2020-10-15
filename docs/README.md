@@ -15,7 +15,9 @@
 
 ### 2. Packages
 
-**Pending**
+![PACKAGES](img/package-cloudapps-mastermind.png)
+
+**Pending to complete**
 
 ### Author
 
