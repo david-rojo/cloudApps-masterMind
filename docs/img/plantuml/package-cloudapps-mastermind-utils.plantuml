@@ -1,33 +1,39 @@
-@startuml
+@startuml Package **cloudapps.mastermind.utils**
 
 package "cloudapps.mastermind.utils" {
 
-  class WithConsoleView {
-    #Console console
-    #WithConsoleView()
-  }
   
   class Console {
+    +{static}Console console
     -BufferedReader bufferedReader
-    +Console()
-    +void write(char)
-    +void write(String)
-    +int readInt(String)
-    +char readChar(String)
-    +String readString(String)    
-    +void writeln(int)
-    +void writeln(String)
-    +void writeln()
-    +void writeError(String)
+    +{static} instance(): Console
+    +write(char): void
+    +write(String): void
+    +readInt(String): int
+    +readChar(String): char
+    +readString(String): String
+    +writeln(int): void
+    +writeln(String): void
+    +writeln(): void
+    +writeError(String): void
 
   }
   
-  class YesNoDialog {}
+  class YesNoDialog {
+    {static} -final char AFFIRMATIVE
+    {static} -final char NEGATIVE
+    {static} -final String SUFFIX
+    {static} -final String MESSAGE
+    -char answer
+    +read(String): boolean
+    -isAfirmative(): boolean
+    -getAnswer(): char
+    -isNegative(): boolean
+  }
   
-  WithConsoleView *--> Console
-  WithConsoleView <|-- YesNoDialog
+  YesNoDialog ..> Console
   Console *--> java.io.BufferedReader
-}
+  }
 
 package "java.io" {
   

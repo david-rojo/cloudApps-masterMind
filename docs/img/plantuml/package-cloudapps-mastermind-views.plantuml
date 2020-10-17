@@ -3,66 +3,127 @@
 package "cloudapps.mastermind.views" {
 
   class View {
-    #Game game
     -PlayView playView
     -ResumeView resumeView
     -StartView startView
     +View(Game)
-    +void interact()
+    +interact(): void
   }
   
-  class PlayView {}
+  class StartView {
+    -Game game
+    +StartView(Game)
+    +interact(): void
+  }
   
-  class ResumeView {}
+  class ResumeView {
+    -Game game
+    +ResumeView(Game)
+    +interact(): void
+  }
+
+  class PlayView {
+    -Game game
+    -SecretCombinationView secretCombinationView
+    +PlayView(Game)
+    +interact(): boolean
+
+  }
   
-  class StartView {}
+  enum MessageView {
+    TITLE
+    PROPOSED_COMBINATION
+    ATTEMPTS
+    RESUME
+    WINNER
+    LOOSER
+    RESULT
+    SECRET
+    TEXT_SEPARATOR
+    -String message
+    -MessageView()
+    -Message(String)
+    +write(): void
+    +writeln(): void
+    +writeln(int, int): void
+    +writeln(int): void  
+    +toString(): String
+  }
   
-  class MessageView {}
+  class ColorView {
+    -{static}String[] INITIALS
+    -Color color
+    +ColorView(Color)
+    +{static} getInstance(char): Color
+    +write()
+    +writeln()
+    +{static} getInitials(): String
+  }
   
-  class ColorView {}
+  class ErrorView {
+    -{static}String[] MESSAGES
+    -Error error
+    +ErrorView(Error)
+    +writeln(): void
+  }
   
-  class ErrorView {}
+  class ResultView {
+    -Result result
+    +ResultView(Result)
+    +writeln(): void
+  }
   
-  class ResultView {}
+  class ProposedCombinationView {
+    -ProposedCombination proposedCombination
+    +ProposedCombinationView(ProposedCombination)
+    +write(): void
+    +read(): void
+    -check(String): Error
+    -populate(String): void
+  }
   
-  class ProposedCombinationView {}
-  
-  class SecretCombinationView {}
+  class SecretCombinationView {
+    -SecretCombination secretCombination
+    +SecretCombinationView(SecretCombination)
+    +writeln(): void
+  }
   
   View *--> PlayView
   View *--> StartView
   View *--> ResumeView
-  View *--> cloudapps.mastermind.models.Game
-  
-  ResumeView ..> cloudapps.mastermind.models.Game
-  ResumeView ..> MessageView
+  View ..> cloudapps.mastermind.models.Game
   
   StartView ..> cloudapps.mastermind.models.Game
   StartView ..> MessageView
-  
+  StartView ..> SecretCombinationView
+    
   PlayView ..> cloudapps.mastermind.models.Game
+  PlayView ..> cloudapps.mastermind.models.ProposedCombination
   PlayView ..> SecretCombinationView
   PlayView ..> ProposedCombinationView
   PlayView ..> ResultView
-  PlayView ..> ErrorView
+  PlayView ..> MessageView
+  
+  ResumeView ..> cloudapps.mastermind.models.Game
+  ResumeView ..> MessageView
+  ResumeView ..> cloudapps.mastermind.utils.YesNoDialog
   
   ProposedCombinationView ..> ColorView
   ProposedCombinationView ..> MessageView
+  ProposedCombinationView ..> cloudapps.mastermind.models.Error
   
   SecretCombinationView ..> MessageView
+  SecretCombinationView ..> cloudapps.mastermind.models.SecretCombination
+  
   ResultView ..> MessageView
+  ResultView ..> cloudapps.mastermind.models.Result
   
-  ErrorView ..> ColorView
-  
-  
-    
+  ErrorView ..> cloudapps.mastermind.models.Error
+
+  ColorView ..> cloudapps.mastermind.models.Color
+  ColorView ..> cloudapps.mastermind.utils.Console
+
+  MessageView ..> cloudapps.mastermind.utils.Console    
 }
-
-package "cloudapps.mastermind.utils" {
-
-  class WithConsoleView {}
-  
-}
-
 
 @enduml
