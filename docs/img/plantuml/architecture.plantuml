@@ -1,0 +1,23 @@
+@startuml
+
+namespace cloudapps.mastermind.views #DDDDDD {}
+
+namespace cloudapps.mastermind.models #DDDDDD {}
+
+namespace cloudapps.mastermind.utils #DDDDDD {}
+
+namespace cloudapps.mastermind #DDDDDD {}
+
+namespace java.io {}
+
+namespace java.util {}
+
+cloudapps.mastermind ..> cloudapps.mastermind.models
+cloudapps.mastermind ..> cloudapps.mastermind.views
+cloudapps.mastermind.views ..> cloudapps.mastermind.models
+cloudapps.mastermind.views ..> cloudapps.mastermind.utils
+cloudapps.mastermind.models ..> java.util
+cloudapps.mastermind.models ..> cloudapps.mastermind.utils
+cloudapps.mastermind.utils ..> java.io
+
+@enduml
