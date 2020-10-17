@@ -13,11 +13,25 @@
 
 ![MASTERMIND GAME](img/mastermind.jpg)
 
-### 2. Packages
+### 2. Architecture
 
-![PACKAGES](img/package-cloudapps-mastermind.png)
+![ARCHITECTURE](img/architecture.png)
 
-**Pending to complete**
+### 3. *cloudapps.mastermind* package
+
+![MASTERMIND PACKAGE](img/package-cloudapps-mastermind.png)
+
+### 4. *cloudapps.mastermind.views* package
+
+![MASTERMIND VIEWS](img/package-cloudapps-mastermind-views.png)
+
+### 5. *cloudapps.mastermind.models* package
+
+![MASTERMIND VIEWS](img/package-cloudapps-mastermind-models.png)
+
+### 6. *cloudapps.mastermind.utils* package
+
+![MASTERMIND VIEWS](img/package-cloudapps-mastermind-utils.png)
 
 ### Author
 
