@@ -1,17 +1,16 @@
-package cloudapps.mastermind.views;
+package cloudapps.mastermind.views.console;
 
 import cloudapps.mastermind.models.Game;
+import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.YesNoDialog;
 
-class ResumeView {
+public class ResumeView extends SubView{
 
-	private Game game;
-
-	ResumeView(Game game) {
-		this.game = game;
+	public ResumeView(Game game) {
+		super(game);
 	}
 
-	boolean interact() {
+	public boolean interact() {
 		MessageView.RESUME.write();
 		boolean newGame = new YesNoDialog().read();
 		if (newGame) {

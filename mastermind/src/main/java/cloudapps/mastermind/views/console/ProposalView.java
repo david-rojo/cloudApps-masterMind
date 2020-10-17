@@ -1,26 +1,25 @@
-package cloudapps.mastermind.views;
+package cloudapps.mastermind.views.console;
 
 import cloudapps.mastermind.models.Game;
 import cloudapps.mastermind.models.ProposedCombination;
-import cloudapps.utils.WithConsoleView;
+import cloudapps.mastermind.views.MessageView;
+import cloudapps.utils.Console;
 
-class ProposalView extends WithConsoleView {
+public class ProposalView extends SubView {
 
-	private Game game;
-	
 	private SecretCombinationView secretCombinationView;
-
-	ProposalView(Game game) {
-		this.game = game;
+	
+	public ProposalView(Game game) {
+		super(game);
 		this.secretCombinationView = new SecretCombinationView();
 	}
 
-	boolean interact() {
+	public boolean interact() {
 		ProposedCombination proposedCombination = new ProposedCombination();
 		ProposedCombinationView proposedCombinationView = new ProposedCombinationView(proposedCombination);
 		proposedCombinationView.read();
 		this.game.addProposedCombination(proposedCombination);
-		this.console.writeln();
+		Console.instance().writeln();
 		MessageView.ATTEMPTS.writeln(this.game.getAttempts());
 		this.secretCombinationView.writeln();
 		for (int i = 0; i < this.game.getAttempts(); i++) {

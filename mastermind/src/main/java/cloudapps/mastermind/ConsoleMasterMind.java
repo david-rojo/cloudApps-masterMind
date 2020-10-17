@@ -1,15 +1,15 @@
 package cloudapps.mastermind;
 
 import cloudapps.mastermind.models.Game;
-import cloudapps.mastermind.views.View;
+import cloudapps.mastermind.views.console.View;
 
-public class MasterMind {
+public class ConsoleMasterMind {
 
 	private Game game;
 	
 	private View view;
 
-	private MasterMind() {
+	private ConsoleMasterMind() {
 		this.game = new Game();
 		this.view = new View(this.game);
 	}
@@ -19,7 +19,6 @@ public class MasterMind {
 	}
 	
 	public static void main(String[] args) {
-		new MasterMind().play();
+		new ConsoleMasterMind().play();
 	}	
-
 }

@@ -1,12 +1,13 @@
-package cloudapps.mastermind.views;
+package cloudapps.mastermind.views.console;
 
 import cloudapps.mastermind.models.Color;
-import cloudapps.mastermind.models.Error;
 import cloudapps.mastermind.models.Combination;
+import cloudapps.mastermind.models.Error;
 import cloudapps.mastermind.models.ProposedCombination;
-import cloudapps.utils.WithConsoleView;
+import cloudapps.mastermind.views.MessageView;
+import cloudapps.utils.Console;
 
-class ProposedCombinationView extends WithConsoleView {
+public class ProposedCombinationView {
 	
 	private ProposedCombination proposedCombination;
 
@@ -25,7 +26,7 @@ class ProposedCombinationView extends WithConsoleView {
 		do {
 			error = null;
 			MessageView.PROPOSED_COMBINATION.write();
-			String characters = this.console.readString();
+			String characters = Console.instance().readString();
 			if (characters.length() > Combination.getWidth()) {
 				error = Error.WRONG_LENGTH;
 			} else {

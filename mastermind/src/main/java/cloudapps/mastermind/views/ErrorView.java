@@ -1,23 +1,18 @@
 package cloudapps.mastermind.views;
 
 import cloudapps.mastermind.models.Error;
-import cloudapps.utils.WithConsoleView;
 
-class ErrorView extends WithConsoleView {
+public class ErrorView {
 
-	private static final String[] MESSAGES = { 
+	public static final String[] MESSAGES = { 
 			"Repeated colors",
 			"Wrong colors, they must be: " + ColorView.allInitials(), 
 			"Wrong proposed combination length" };
 
-	private Error error;
+	protected Error error;
 
-	ErrorView(Error error) {
+	public ErrorView(Error error) {
 		this.error = error;
-	}
-	
-	void writeln() {
-		this.console.writeln(ErrorView.MESSAGES[this.error.ordinal()]);
 	}
 
 }
