@@ -5,7 +5,7 @@ import cloudapps.mastermind.models.ProposedCombination;
 import cloudapps.mastermind.models.Result;
 import cloudapps.mastermind.models.State;
 
-public class PlayController extends Controller {
+public class PlayController extends UseCaseController {
 
 	public PlayController(Game game, State state) {
 		super(game, state);
@@ -36,6 +36,11 @@ public class PlayController extends Controller {
 	
 	public boolean isWinner() {
 		return this.game.isWinner();
+	}
+
+	@Override
+	public void accept(ControllerVisitor controllerVisitor) {
+		controllerVisitor.visit(this);
 	}
 
 }

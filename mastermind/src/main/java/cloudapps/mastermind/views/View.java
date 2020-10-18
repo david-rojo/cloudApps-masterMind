@@ -1,9 +1,9 @@
 package cloudapps.mastermind.views;
 
-import cloudapps.mastermind.controllers.Controller;
+import cloudapps.mastermind.controllers.UseCaseController;
 
 public abstract class View {
 
-	public abstract void interact(Controller controller);
+	public abstract void interact(UseCaseController controller);
 
 }
