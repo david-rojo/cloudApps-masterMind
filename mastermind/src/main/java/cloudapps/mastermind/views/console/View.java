@@ -1,6 +1,9 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.Logic;
+import cloudapps.mastermind.controllers.Controller;
+import cloudapps.mastermind.controllers.PlayController;
+import cloudapps.mastermind.controllers.ResumeController;
+import cloudapps.mastermind.controllers.StartController;
 
 
 public class View extends cloudapps.mastermind.views.View {
@@ -9,25 +12,21 @@ public class View extends cloudapps.mastermind.views.View {
 	private PlayView playView;
 	private ResumeView resumeView;
 
-	public View(Logic logic) {
-		this.startView = new StartView(logic);
-		this.playView = new PlayView(logic);
-		this.resumeView = new ResumeView(logic);
+	public View() {
+		this.startView = new StartView();
+		this.playView = new PlayView();
+		this.resumeView = new ResumeView();
 	}
-
+	
 	@Override
-	protected void start(){
-		this.startView.interact();
-	}
-
-	@Override
-	protected boolean play(){
-		return this.playView.interact();
-	}
-
-	@Override
-	protected boolean isNewGame(){
-		return this.resumeView.interact();
+	public void interact(Controller controller) {
+		if (controller instanceof StartController) {
+			this.startView.interact((StartController) controller);
+		} else if (controller instanceof PlayController) {
+			this.playView.interact((PlayController) controller);
+		} else {
+			this.resumeView.interact((ResumeController) controller);
+		}
 	}
 
 }

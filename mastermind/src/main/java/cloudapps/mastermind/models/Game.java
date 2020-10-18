@@ -51,5 +51,9 @@ public class Game {
 	public Result getResult(int position) {
 		return this.results.get(position);
 	}
+	
+	public boolean isFinished() {
+		return isWinner() || isLooser();
+	}
 
 }

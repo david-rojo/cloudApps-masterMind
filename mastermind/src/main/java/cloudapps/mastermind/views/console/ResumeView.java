@@ -1,20 +1,19 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.Logic;
+import cloudapps.mastermind.controllers.ResumeController;
 import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.YesNoDialog;
 
-public class ResumeView extends SubView {
+public class ResumeView {
 
-	public ResumeView(Logic logic){
-		super(logic);
-	}
-
-	public boolean interact() {
+	public boolean interact(ResumeController resumeController) {
 		MessageView.RESUME.write();
 		boolean newGame = new YesNoDialog().read();
 		if (newGame) {
-			this.logic.resume();
+			resumeController.resume();
+		}
+		else {
+			resumeController.next();
 		}
 		return newGame;
 	}

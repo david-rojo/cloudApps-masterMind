@@ -1,17 +1,14 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.Logic;
+import cloudapps.mastermind.controllers.StartController;
 import cloudapps.mastermind.views.MessageView;
 
-public class StartView extends SubView {
+public class StartView {
 
-	StartView(Logic logic) {
-		super(logic);
-	}
-
-	public void interact() {
+	public void interact(StartController startController) {
 		MessageView.TITLE.writeln();
-		new SecretCombinationView().writeln();		
+		new SecretCombinationView().writeln();	
+		startController.next();
 	}
 
 }

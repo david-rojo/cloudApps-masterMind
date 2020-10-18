@@ -1,6 +1,6 @@
 package cloudapps.mastermind.views.graphics;
 
-import cloudapps.mastermind.controllers.Logic;
+import cloudapps.mastermind.controllers.Controller;
 
 /**
  * It is out of the scope of the exercise the graphic implementation of the game.
@@ -11,27 +11,15 @@ import cloudapps.mastermind.controllers.Logic;
 
 public class View extends cloudapps.mastermind.views.View {
 
-	public View(Logic logic) {
+	public View() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	protected void start() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	protected boolean play() {
+	public void interact(Controller controller) {
 		// TODO Auto-generated method stub
-		return false;
 		
-	}
-
-	@Override
-	protected boolean isNewGame() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

@@ -1,49 +1,31 @@
 package cloudapps.mastermind.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cloudapps.mastermind.models.Game;
-import cloudapps.mastermind.models.ProposedCombination;
-import cloudapps.mastermind.models.Result;
+import cloudapps.mastermind.models.State;
+import cloudapps.mastermind.models.StateValue;
+
 
 public class Logic {
 
 	private Game game;
-	private StartController startController;
-	private PlayController playController;
-	private ResumeController resumeController;
+	private State state;
+	private Map<StateValue, Controller> controllers;
 
 	public Logic() {
-		this.game = new Game();
-		this.startController = new StartController(this.game);
-		this.playController = new PlayController(this.game);
-		this.resumeController = new ResumeController(this.game);
+		this.state = new State();
+	    this.game = new Game();
+	    this.controllers = new HashMap<StateValue, Controller>();
+	    this.controllers.put(StateValue.INITIAL, new StartController(this.game, this.state));
+	    this.controllers.put(StateValue.IN_GAME, new PlayController(this.game, this.state));
+	    this.controllers.put(StateValue.RESUME, new ResumeController(this.game, this.state));
+	    this.controllers.put(StateValue.EXIT, null);
 	}
 	
-	public void addProposedCombination(ProposedCombination proposedCombination) {
-		this.playController.addProposedCombination(proposedCombination);
-	}
-	
-	public ProposedCombination getProposedCombination(int position) {
-		return this.playController.getProposedCombination(position);
-	}
-	
-	public Result getResult(int position) {
-		return this.playController.getResult(position);
-	}
-	
-	public int getAttempts() {
-		return this.playController.getAttempts();
-	}
-
-	public boolean isLooser() {
-		return this.playController.isLooser();
-	}
-	
-	public boolean isWinner() {
-		return this.playController.isWinner();
-	}
-
-	public void resume() {
-		this.resumeController.resume();
+	public Controller getController() {
+		return this.controllers.get(this.state.getValueState());
 	}
 	
 }
