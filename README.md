@@ -21,13 +21,6 @@ $ mvn package
 $ java -jar target/mastermind-1.0-SNAPSHOT.jar
 ```
 
-### 4. Run tests
-
-```
-$ cd mastermind
-$ mvn test
-```
-
 ### Author
 
 [David Rojo(@david-rojo)](https://github.com/david-rojo)
