@@ -1,7 +1,6 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.PlayController;
-import cloudapps.mastermind.controllers.ResumeController;
+import cloudapps.mastermind.controllers.Logic;
 
 
 public class View extends cloudapps.mastermind.views.View {
@@ -10,10 +9,10 @@ public class View extends cloudapps.mastermind.views.View {
 	private PlayView playView;
 	private ResumeView resumeView;
 
-	public View(PlayController playController, ResumeController resumeController) {
-		this.startView = new StartView();
-		this.playView = new PlayView(playController);
-		this.resumeView = new ResumeView(resumeController);
+	public View(Logic logic) {
+		this.startView = new StartView(logic);
+		this.playView = new PlayView(logic);
+		this.resumeView = new ResumeView(logic);
 	}
 
 	@Override

@@ -1,10 +1,12 @@
 package cloudapps.mastermind.views.console;
 
+import cloudapps.mastermind.controllers.Logic;
 import cloudapps.mastermind.views.MessageView;
 
-public class StartView {
+public class StartView extends SubView {
 
-	StartView() {
+	StartView(Logic logic) {
+		super(logic);
 	}
 
 	public void interact() {
