@@ -1,0 +1,44 @@
+@startuml Package **cloudapps.mastermind.views**
+
+package "cloudapps.mastermind.views" {
+
+  abstract class View {
+    +{abstract}interact(): void
+  }
+  
+  enum MessageView {
+    ATTEMPTS
+    SECRET
+    RESUME
+    RESULT
+    PROPOSED_COMBINATION
+    TITLE 
+    WINNER
+    LOOSER    
+    TEXT_SEPARATOR    
+    -String message
+    -Message(String)
+    +write(): void
+    +writeln(): void
+    +writeln(int): void  
+    +writeln(int, int): void
+  }
+  
+  class ColorView {
+    -{static}char[] INITIALS
+    #Color color
+    +ColorView(Color)
+    +{static} getInstance(char): Color
+    +{static} allInitials(): String
+  }
+  
+  class ErrorView {
+    +{static}String[] MESSAGES
+    #Error error
+    +ErrorView(Error)
+  }
+  
+  View ..> cloudapps.mastermind.controllers.UseCaseController  
+}
+
+@enduml

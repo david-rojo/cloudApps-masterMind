@@ -1,0 +1,89 @@
+@startuml Package **cloudapps.mastermind.views.console**
+
+package "cloudapps.mastermind.views.console" {
+
+  class View implements cloudapps.mastermind.controllers.ControllerVisitor {
+    -StartView startView
+    -PlayView playView
+    -ResumeView resumeView  
+    +View()
+    +{abstract}interact(UseCaseController): void
+    +visit(StartController): void
+    +visit(PlayController): void
+    +visit(ResumeController): void
+  }
+   
+  class ColorView {
+    ~ColorView(Color)
+    +write(): void
+  }
+  
+  class ErrorView {
+    ~ErrorView(Error)
+    +writeln(): void
+  }
+  
+  class PlayView {
+      +interact(PlayController): boolean
+  }
+
+  class ProposedCombinationView {
+      -ProposedCombination proposedCombination
+      ~ProposedCombinationView(ProposedCombination)
+      ~write(): void
+      ~read(): void
+  }
+
+  class ResultView {
+      -Result result
+      +ResultView(Result)
+      +writeln(): void
+  }
+
+  class SecretCombinationView {
+      +SecretCombinationView()
+      +writeln(): void
+  }
+
+  class StartView {
+      +interact(StartController): void
+  }
+
+  class ResumeView {
+    +interact(ResumeController): void
+  }
+  
+  View *--> StartView
+  View *--> PlayView
+  View *--> ResumeView
+
+  PlayView ..> ProposedCombinationView
+  PlayView ..> SecretCombinationView
+  PlayView ..> ResultView
+  
+  StartView ..> SecretCombinationView
+  ProposedCombinationView ..> ErrorView
+  ProposedCombinationView ..> ColorView
+
+  cloudapps.mastermind.views.View <|-- View
+  cloudapps.mastermind.views.ColorView <|-- ColorView
+  cloudapps.mastermind.views.ErrorView <|-- ErrorView
+  cloudapps.mastermind.views.Error <|-- ErrorView
+  cloudapps.mastermind.views.MessageView <.. ResumeView
+
+  cloudapps.utils.YesNoDialog <.. ResumeView
+
+
+  cloudapps.mastermind.models.Color <.. ColorView
+  cloudapps.mastermind.models.Error <.. ErrorView
+  cloudapps.mastermind.models.Result <--* ResultView
+  cloudapps.mastermind.models.ProposedCombination <--* ProposedCombinationView
+
+  cloudapps.mastermind.controllers.PlayController <.left. PlayView
+  cloudapps.mastermind.controllers.UseCaseController <.left. View
+  cloudapps.mastermind.controllers.StartController <.left. View
+  cloudapps.mastermind.controllers.PlayController <.left. View
+  cloudapps.mastermind.controllers.ResumeController <.left. View
+}
+
+@enduml

@@ -1,0 +1,75 @@
+@startuml Package **cloudapps.mastermind.controllers**
+
+package "cloudapps.mastermind.controllers" {
+
+  interface ControllerVisitor {
+      ~visit(StartController): void
+      ~visit(PlayController): void
+      ~visit(ResumeController): void
+  }
+
+  class Logic {
+    -Map<StateValue, UseCaseController> controllers
+    -Game game
+    -State state
+    +Logic()
+    +getController(): UseCaseController
+  }
+
+  class PlayController {
+      +PlayController(Game,State)
+      +accept(ControllerVisitor)
+      +addProposedCombination(ProposedCombination): void
+      +getAttempts(): int
+      +getProposedCombination(int): ProposedCombination
+      +getResult(int): Result
+      +isLooser(): boolean
+      +isWinner(): boolean
+  }
+
+  class ResumeController {
+    +ResumeController(Game,State)
+    +accept(ControllerVisitor): void
+    +resume(): void
+  }
+
+  class StartController {
+    +StartController(Game,State)
+    +accept(ControllerVisitor): void
+  }
+
+  abstract UseCaseController {
+     #Game game
+     #State state
+     ~UseCaseController(Game,State)
+     +{abstract}accept(ControllerVisitor): void
+     +next():void
+  }
+
+  ControllerVisitor ..> StartController
+  ControllerVisitor ..> PlayController
+  ControllerVisitor ..> ResumeController
+
+  UseCaseController <|-- StartController
+  UseCaseController <|-- PlayController
+  UseCaseController <|-- ResumeController
+
+  java.util.Map <.. Logic
+  cloudapps.mastermind.models.Game <--* Logic
+  cloudapps.mastermind.models.State <--* Logic
+  cloudapps.mastermind.models.StateValue <--* Logic
+  Logic *--> UseCaseController
+
+  cloudapps.mastermind.models.ProposedCombination <.. PlayController
+  cloudapps.mastermind.models.Result <.. PlayController
+
+  PlayController ..> ControllerVisitor
+  ResumeController ..> ControllerVisitor
+  StartController ..> ControllerVisitor
+  UseCaseController ..> ControllerVisitor
+
+  cloudapps.mastermind.models.Game <.. UseCaseController
+  cloudapps.mastermind.models.State <.. UseCaseController
+}
+
+@enduml

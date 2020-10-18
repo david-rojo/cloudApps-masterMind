@@ -1,0 +1,39 @@
+@startuml Package **cloudapps.mastermind**
+
+package "cloudapps.mastermind" {
+  
+  abstract class MasterMind {
+    -Logic logic
+    -View view
+    #MasterMind()
+    #{abstract}createView(): View
+    #play():void 
+  }
+  
+  class ConsoleMasterMind {
+    +{static}main(String[]):void
+    #createView(): View
+  }
+
+  class GraphicsMasterMind {
+    +{static}main(String[]):void
+    #createView(): View
+  }
+
+  MasterMind <|-- ConsoleMasterMind
+  MasterMind <|-- GraphicsMasterMind
+  MasterMind --> cloudapps.mastermind.views.View
+  MasterMind *--> cloudapps.mastermind.controllers.Logic
+}
+
+package "cloudapps.mastermind.views" {
+
+  class View {}
+}
+
+package "cloudapps.mastermind.controllers" {
+
+  class Logic {}
+}
+
+@enduml

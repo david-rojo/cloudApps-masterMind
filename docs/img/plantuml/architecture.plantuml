@@ -1,0 +1,38 @@
+@startuml mastermind-architecture
+
+namespace cloudapps.mastermind.views.console #DDDDDD {}
+
+namespace cloudapps.mastermind.views.graphics #DDDDDD {}
+
+namespace cloudapps.mastermind.models #DDDDDD {}
+
+namespace cloudapps.mastermind.controllers #DDDDDD {}
+
+namespace cloudapps.utils #DDDDDD {}
+
+namespace java.io {}
+
+namespace java.util {}
+
+namespace cloudapps.mastermind.views #DDDDDD {}
+
+namespace cloudapps.mastermind #DDDDDD {}
+
+namespace java {}
+
+cloudapps.mastermind ..> cloudapps.mastermind.views.console
+cloudapps.mastermind ..> cloudapps.mastermind.views.graphics
+cloudapps.mastermind ..> cloudapps.mastermind.views
+cloudapps.mastermind ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.views.console ..> cloudapps.utils
+cloudapps.mastermind.views.console ..> cloudapps.mastermind.views
+cloudapps.mastermind.views.console ..> cloudapps.mastermind.models
+cloudapps.mastermind.views.graphics ..> cloudapps.mastermind.views
+cloudapps.mastermind.views ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.views.graphics ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.views.console ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.controllers ..> cloudapps.mastermind.models
+cloudapps.utils ..> java.io
+cloudapps.mastermind.controllers ..> java.util
+cloudapps.mastermind.models ..> java.util
+@enduml

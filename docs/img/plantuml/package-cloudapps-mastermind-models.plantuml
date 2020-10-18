@@ -1,0 +1,105 @@
+@startuml Package **cloudapps.mastermind.models**
+
+package "cloudapps.mastermind.models" {
+
+  enum Color {
+    RED
+    BLUE
+    YELLOW
+    GREEN
+    ORANGE
+    PURPLE
+    +{static} length(): int
+  }
+
+  abstract class Combination {
+    -{static} final int WIDTH
+    #List<Color> colors
+    #Combination()
+    +{static}getWidth(): int 
+  }
+
+  enum Error {
+    DUPLICATED,
+	  WRONG_CHARACTERS,
+	  WRONG_LENGTH
+  }
+
+  class Game {
+    -{static}final int MAX_LONG
+    -SecretCombination secretCombination
+    -List<ProposedCombination> proposedCombinations
+    -List<Result> results
+    -int attempts
+    +Game()
+    +reset(): void
+    +addProposedCombination(ProposedCombination): void
+    +isLooser(): void
+    +isWinner(): void
+    +getAttempts(): int
+    +getProposedCombination(int position): ProposedCombination
+    +getResult(int position): Result
+    +isFinished(): boolean
+  }  
+  
+  class SecretCombination {
+    ~SecretCombination()
+    ~getResult(ProposedCombination): Result
+  }
+  
+  class ProposedCombination {
+    +contains(Color): boolean
+    +contains(Color, int): boolean
+    +getColors(): List<Color>
+  }
+  
+  class Result {
+    -int blacks
+    -int whites
+    +Result(int, int)
+    +isWinner(): boolean
+    +getBlacks(): int
+    +getWhites(): int
+  }
+
+  enum StateValue {
+    INITIAL,
+    IN_GAME,
+    RESUME,
+    EXIT
+  }
+
+  class State {
+    -StateValue stateValue
+    +State()
+    +getValueState(): StateValue
+    +next(): void
+    +reset(): void
+  }
+    
+  Combination ..>  java.util.List
+  Game ..>  java.util.List
+  ProposedCombination ..> java.util.List
+  
+  Game *--> SecretCombination
+  Game *--> ProposedCombination
+  Game *--> Result
+
+  Combination <|-- SecretCombination
+  Combination <|-- ProposedCombination
+  Combination *--> Color
+
+  SecretCombination ..> Result
+  SecretCombination ..> ProposedCombination
+
+  ProposedCombination ..> Color
+
+  State *--> StateValue  
+}
+
+package "java.util" {
+  
+  class List {}
+
+
+@enduml

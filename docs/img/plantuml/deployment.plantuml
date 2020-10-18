@@ -1,0 +1,14 @@
+@startuml deployment
+
+node computer #DDDDDD [
+    <b>Personal Computer
+    ----
+    memory: xxx Mb
+    cpu: xxx GHz
+]
+
+component mastermind.jar
+
+computer *--> mastermind.jar
+
+@enduml

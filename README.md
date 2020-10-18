@@ -1,4 +1,4 @@
-# Welcome to MasterMind! **(objectOriented)**
+# Welcome to MasterMind! **(modelViewPresenter)**
 
 Read [documentation](docs/README.md) first please
 
@@ -19,13 +19,6 @@ $ mvn install
 $ cd mastermind
 $ mvn package
 $ java -jar target/mastermind-1.0-SNAPSHOT.jar
-```
-
-### 4. Run tests
-
-```
-$ cd mastermind
-$ mvn test
 ```
 
 ### Author
