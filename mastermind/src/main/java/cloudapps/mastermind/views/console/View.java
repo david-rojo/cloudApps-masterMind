@@ -1,18 +1,19 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.models.Game;
+import cloudapps.mastermind.controllers.PlayController;
+import cloudapps.mastermind.controllers.ResumeController;
+
 
 public class View extends cloudapps.mastermind.views.View {
 
 	private StartView startView;
-	private ProposalView proposalView;
+	private PlayView playView;
 	private ResumeView resumeView;
 
-	public View(Game game) {
-		super(game);
-		this.startView = new StartView(this.game);
-		this.proposalView = new ProposalView(this.game);
-		this.resumeView = new ResumeView(this.game);
+	public View(PlayController playController, ResumeController resumeController) {
+		this.startView = new StartView();
+		this.playView = new PlayView(playController);
+		this.resumeView = new ResumeView(resumeController);
 	}
 
 	@Override
@@ -22,7 +23,7 @@ public class View extends cloudapps.mastermind.views.View {
 
 	@Override
 	protected boolean play(){
-		return this.proposalView.interact();
+		return this.playView.interact();
 	}
 
 	@Override

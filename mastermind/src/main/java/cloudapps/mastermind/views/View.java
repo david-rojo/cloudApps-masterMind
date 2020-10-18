@@ -1,14 +1,6 @@
 package cloudapps.mastermind.views;
 
-import cloudapps.mastermind.models.Game;
-
 public abstract class View {
-
-	protected Game game;
-
-	public View(Game game) {
-		this.game = game;
-	}
 
 	public void interact() {
 		boolean playGame = true;

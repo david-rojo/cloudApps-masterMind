@@ -1,6 +1,7 @@
 package cloudapps.mastermind.views.graphics;
 
-import cloudapps.mastermind.models.Game;
+import cloudapps.mastermind.controllers.PlayController;
+import cloudapps.mastermind.controllers.ResumeController;
 
 /**
  * It is out of the scope of the exercise the graphic implementation of the game.
@@ -11,8 +12,7 @@ import cloudapps.mastermind.models.Game;
 
 public class View extends cloudapps.mastermind.views.View {
 
-	public View(Game game) {
-		super(game);
+	public View(PlayController playController, ResumeController resumeController) {
 		// TODO Auto-generated constructor stub
 	}
 
