@@ -8,7 +8,7 @@ public class ConsoleMasterMind extends MasterMind{
 	protected View createView() {
 		return new ConsoleView();
 	}
-	
+
 	public static void main(String[] args) {
 		new ConsoleMasterMind().play();
 	}

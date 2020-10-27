@@ -1,6 +1,7 @@
 package cloudapps.mastermind.views.graphics;
 
-import cloudapps.mastermind.controllers.ProposalController;
+import cloudapps.mastermind.controllers.AcceptorController;
+import cloudapps.mastermind.controllers.PlayController;
 import cloudapps.mastermind.controllers.ResumeController;
 import cloudapps.mastermind.controllers.StartController;
 import cloudapps.mastermind.views.View;
@@ -19,8 +20,8 @@ public class GraphicsView extends View {
 	}
 
 	
-	public void visit(ProposalController proposalController) {
-		this.gameView.interact(proposalController);
+	public void visit(PlayController playController) {
+		this.gameView.interact(playController);
 	}
 
 	
@@ -33,6 +34,13 @@ public class GraphicsView extends View {
 			this.gameView.setVisible(false);
 			System.exit(0);
 		}
+	}
+
+
+	@Override
+	public void interact(AcceptorController controller) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

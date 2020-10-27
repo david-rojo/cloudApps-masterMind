@@ -1,21 +1,21 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.ProposalController;
+import cloudapps.mastermind.controllers.PlayController;
 import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.WithConsoleView;
 
 class ResultView extends WithConsoleView {
 	
-	private ProposalController proposalController;
+	private PlayController playController;
 	
-	ResultView(ProposalController proposalController){
-		this.proposalController = proposalController;
+	ResultView(PlayController playController){
+		this.playController = playController;
 	}
 
 	void writeln(int i) {
 		this.console.writeln(MessageView.RESULT.getMessage()
-				.replaceFirst("#blacks", "" + this.proposalController.getBlacks(i))
-				.replaceFirst("#whites", "" + this.proposalController.getWhites(i)));
+				.replaceFirst("#blacks", "" + this.playController.getBlacks(i))
+				.replaceFirst("#whites", "" + this.playController.getWhites(i)));
 	}
 
 }

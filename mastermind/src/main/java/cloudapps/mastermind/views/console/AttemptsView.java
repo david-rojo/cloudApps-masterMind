@@ -1,20 +1,20 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.ProposalController;
+import cloudapps.mastermind.controllers.PlayController;
 import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.WithConsoleView;
 
 public class AttemptsView extends WithConsoleView {
 
-	private ProposalController proposalController;
+	private PlayController playController;
 
-	AttemptsView(ProposalController proposalController) {
-		this.proposalController = proposalController;
+	AttemptsView(PlayController playController) {
+		this.playController = playController;
 	}
 
 	void writeln() {
 		this.console.writeln(MessageView.ATTEMPTS.getMessage().replaceFirst("#attempts",
-				"" + this.proposalController.getAttempts()));
+				"" + this.playController.getAttempts()));
 	}
 
 }

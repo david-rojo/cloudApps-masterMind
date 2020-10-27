@@ -1,26 +1,24 @@
 package cloudapps.mastermind.controllers;
 
-import cloudapps.mastermind.models.Game;
-import cloudapps.mastermind.models.State;
+import cloudapps.mastermind.models.Session;
 
-public class ResumeController extends Controller {
+public class ResumeController extends UseCaseController implements AcceptorController {
 
-	public ResumeController(Game game, State state) {
-		super(game, state);
+	public ResumeController(Session session) {
+		super(session);
 	}
-	
-	public void resume(boolean newGame) {
-		if (newGame) {
-			this.game.clear();
-			this.state.reset();
+
+	public void resume(boolean isResumed) {
+		if (isResumed){
+			this.session.reset();
 		} else {
-			this.state.next();
+			this.session.next();
 		}
 	}
 
 	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
+	public void accept(ControllerVisitor controllerVisitor) {
+		controllerVisitor.visit(this);
 	}
 
 }

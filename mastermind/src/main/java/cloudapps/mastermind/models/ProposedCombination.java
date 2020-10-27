@@ -1,6 +1,7 @@
 package cloudapps.mastermind.models;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import cloudapps.mastermind.types.Color;
 
@@ -21,6 +22,12 @@ class ProposedCombination extends Combination {
 			}
 		}
 		return false;
+	}
+	
+	protected ProposedCombination copy() {
+		List<Color> clonedColors = this.colors.stream().collect(Collectors.toList());
+		ProposedCombination clonedProposedCombination = new ProposedCombination(clonedColors);
+		return clonedProposedCombination;
 	}
 
 }

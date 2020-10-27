@@ -1,21 +1,20 @@
 package cloudapps.mastermind.controllers;
 
-import cloudapps.mastermind.models.Game;
-import cloudapps.mastermind.models.State;
+import cloudapps.mastermind.models.Session;
 
-public class StartController extends Controller {
+public class StartController extends UseCaseController implements AcceptorController {
 
-	public StartController(Game game, State state) {
-		super(game, state);
+	public StartController(Session session) {
+		super(session);
 	}
-	
-	public void start() {
-		this.state.next();
-	}
-	
+
 	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
+	public void accept(ControllerVisitor controllerVisitor) {
+		controllerVisitor.visit(this);
 	}
 
+	public void start() {
+		this.session.startRegistry();
+		this.session.next();
+	}
 }

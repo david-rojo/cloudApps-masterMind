@@ -1,13 +1,12 @@
 package cloudapps.mastermind;
 
-import cloudapps.mastermind.controllers.Controller;
+import cloudapps.mastermind.controllers.AcceptorController;
 import cloudapps.mastermind.controllers.Logic;
 import cloudapps.mastermind.views.View;
 
 public abstract class MasterMind {
 	
 	private Logic logic;
-	
 	private View view;
 	
 	protected MasterMind() {
@@ -18,10 +17,10 @@ public abstract class MasterMind {
 	protected abstract View createView();
 
 	protected void play() {
-		Controller controller;
+		AcceptorController controller;
 		do {
 			controller = this.logic.getController();
-			if (controller != null){
+			if (controller != null) {
 				this.view.interact(controller);
 			}
 		} while (controller != null); 

@@ -3,21 +3,21 @@ package cloudapps.mastermind.views.console;
 import java.util.ArrayList;
 import java.util.List;
 
-import cloudapps.mastermind.controllers.ProposalController;
+import cloudapps.mastermind.controllers.PlayController;
 import cloudapps.mastermind.types.Color;
 import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.WithConsoleView;
 
 class ProposedCombinationView extends WithConsoleView {
 	
-	private ProposalController proposalController;
+	private PlayController playController;
 	
-	ProposedCombinationView(ProposalController proposalController) {
-		this.proposalController = proposalController;
+	ProposedCombinationView(PlayController playController) {
+		this.playController = playController;
 	}
 	
 	void write(int position) {
-		for (Color color : this.proposalController.getColors(position)) {
+		for (Color color : this.playController.getColors(position)) {
 			new ColorView(color).write();
 		}
 	}
