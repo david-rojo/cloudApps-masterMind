@@ -1,0 +1,49 @@
+@startuml Package **cloudapps.mastermind.views**
+
+package "cloudapps.mastermind.views" {
+
+  class ColorView {
+    -{static}char[] INITIALS
+    #Color color
+    +ColorView(Color)
+    ~{static}allInitials(): String
+    +{static}getInstance(char): Color
+    +getInitial(): char
+  }
+
+  class ErrorView {
+    +{static}String[] MESSAGES
+    #Error error
+    +ErrorView(Error)
+    +getMessage(): String
+  }
+
+  enum MessageView {
+    ATTEMPTS
+    SECRET
+    RESUME
+    RESULT
+    PROPOSED_COMBINATION
+    ACTION_COMMAND
+    UNDO_COMMAND
+    REDO_COMMAND
+    TITLE 
+    WINNER
+    LOOSER    
+    -String message
+    -MessageView(String)
+    +getMessage(): String
+  }
+
+  abstract class View implements cloudapps.mastermind.controllers.ControllerVisitor {
+    +{abstract}interact(AcceptorController): void
+  }
+  
+  ColorView *--> cloudapps.mastermind.types.Color
+
+  ErrorView *--> cloudapps.mastermind.types.Error
+
+  cloudapps.mastermind.controllers.AcceptorController <.. View
+}
+
+@enduml

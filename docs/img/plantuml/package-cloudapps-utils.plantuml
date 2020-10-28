@@ -1,0 +1,67 @@
+@startuml Package **cloudapps.utils**
+
+package "cloudapps.utils" {
+  
+  class ClosedInterval {
+    -int min
+    -int max
+    +ClosedInterval(int, int)
+    +includes(int): boolean
+  }
+
+  abstract class Command {
+    #String title
+    #Command(String)
+    #{abstract}execute(): void
+    #{abstract}isActive(): boolean
+    ~getTitle(): String
+  }  
+
+  class Console {
+    -BufferedReader bufferedReader
+    +readChar(String): char
+    +readInt(String): int
+    +readString(String): String
+    +write(char): void
+    +write(String): void
+    +writeError(String): void
+    +writeln(): void
+    +writeln(int): void
+    +writeln(String): void
+  }
+
+  abstract class Menu extends WithConsoleView {
+    -{static}String OPTION
+    -List<Command> commandList
+    +Menu()
+    +execute(): void
+    #addCommand(Command): void
+  }
+
+  abstract class WithConsoleView {
+    #Console Console
+    #WithConsoleView()
+  }
+    
+  class YesNoDialog extends WithConsoleView {
+    -{static}final char AFFIRMATIVE
+    -{static}final char NEGATIVE
+    -{static}final String QUESTION
+    -{static}final String MESSAGE
+    -{static}isAfirmative(char): boolean
+    -{static}isNegative(char): boolean
+    +read(String): boolean
+  }
+  
+  Console ..> java.io.BufferedReader
+  Console ..> java.io.InputStreamReader
+
+  WithConsoleView *--> Console
+  
+  Menu *--> Command
+  Menu ..> java.util.ArrayList
+  Menu ..> java.util.List
+
+}
+
+@enduml

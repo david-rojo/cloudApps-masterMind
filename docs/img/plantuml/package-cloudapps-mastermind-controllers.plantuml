@@ -1,0 +1,119 @@
+@startuml Package **cloudapps.mastermind.controllers**
+
+package "cloudapps.mastermind.controllers" {
+
+  interface AcceptorController {
+    +accept(ControllerVisitor): void
+  }
+
+  class ActionController extends UseCaseController {
+    +ActionController(Session)
+    +addProposedCombination(List<Color>): Error
+    +getAttempts(): int
+    +getBlacks(int): int
+    +getColors(int): List<Color>
+    +getCombinationWidth(): int
+    +getWhites(int): int
+    +isLooser(): boolean
+    +isWinner(): boolean
+  }
+
+  interface ControllerVisitor {
+      ~visit(StartController): void
+      ~visit(PlayController): void
+      ~visit(ResumeController): void
+  }
+
+  class Logic {
+    -Session session
+    -Map<StateValue, AcceptorController> controllers
+    +Logic()
+    +getController(): AcceptorController
+  }
+
+  class PlayController extends UseCaseController implements AcceptorController {
+    -ActionController ActionController
+    -UndoController undoController
+    -RedoController redoController
+    +PlayController(Session)
+    +accept(ControllerVisitor)
+    +addProposedCombination(List<Color>): Error
+    +getAttempts(): int
+    +getBlacks(int): int
+    +getColors(int): List<Color>
+    +getWhites(int): int
+    +isLooser(): boolean
+    +isWinner(): boolean
+    +redo(): void
+    +redoable(): boolean
+    +undo(): void
+    +undoable(): boolean
+  }
+
+  class RedoController extends UseCaseController {
+    ~RedoController(Session)
+    ~redo(): void
+    ~redoable(): boolean
+  }
+
+  class ResumeController extends UseCaseController implements AcceptorController {
+    +ResumeController(Session)
+    +accept(ControllerVisitor): void
+    +resume(boolean): void
+  }
+
+  class StartController extends UseCaseController implements AcceptorController {
+    +StartController(Session)
+    +accept(ControllerVisitor): void
+    +start(): void
+  }
+
+  class UndoController extends UseCaseController {
+    ~UndoController(Session)
+    ~undo(): void
+    ~undoable(): boolean
+  }
+
+  abstract UseCaseController {
+     #Session session
+     ~UseCaseController(Session)
+     +getCombinationWidth(): int
+  }
+
+  AcceptorController ..> ControllerVisitor
+  
+  ActionController ..> java.util.List
+  ActionController ..> cloudapps.mastermind.models.Session
+  ActionController ..> cloudapps.mastermind.types.Color
+  ActionController ..> cloudapps.mastermind.types.Error
+  
+  ControllerVisitor ..> StartController
+  ControllerVisitor ..> PlayController
+  ControllerVisitor ..> ResumeController
+  
+  Logic ..> java.util.HashMap
+  Logic ..> java.util.Map
+  Logic *--> cloudapps.mastermind.models.Session
+  Logic *--> cloudapps.mastermind.models.StateValue
+  Logic *--> AcceptorController
+
+  PlayController *--> ActionController
+  PlayController *--> UndoController
+  PlayController *--> RedoController
+  PlayController ..> cloudapps.mastermind.models.Session
+  PlayController ..> cloudapps.mastermind.types.Color
+  PlayController ..> cloudapps.mastermind.types.Error
+
+  RedoController ..> cloudapps.mastermind.models.Session
+
+  ResumeController ..> cloudapps.mastermind.models.Session
+  
+  StartController ..> cloudapps.mastermind.models.Session
+
+  UndoController ..> cloudapps.mastermind.models.Session
+
+  UseCaseController *--> cloudapps.mastermind.models.Session
+
+}
+
+@enduml

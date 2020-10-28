@@ -36,15 +36,11 @@ In this branch has been taken in account the application of three design pattern
 
 #### 3.2. cloudapps.mastermind.views package 
 
-**Pending to be updated**
-
 ![PACKAGE-MASTERMIND-VIEWS](img/package-cloudapps-mastermind-views.png)
 
 [diagram source code](img/plantuml/package-cloudapps-mastermind-views.plantuml)
 
 #### 3.2. cloudapps.mastermind.views.console package
-
-**Pending to be updated**
 
 ![PACKAGE-MASTERMIND-VIEWS-CONSOLE](img/package-cloudapps-mastermind-views-console.png)
 
@@ -52,15 +48,11 @@ In this branch has been taken in account the application of three design pattern
 
 #### 3.3. cloudapps.mastermind.models package
 
-**Pending to be updated**
-
 ![PACKAGE-MASTERMIND-MODELS](img/package-cloudapps-mastermind-models.png)
 
 [diagram source code](img/plantuml/package-cloudapps-mastermind-models.plantuml)
 
 #### 3.4. cloudapps.mastermind.controllers package
-
-**Pending to be updated**
 
 ![PACKAGE-MASTERMIND-CONTROLLER](img/package-cloudapps-mastermind-controllers.png)
 
@@ -73,8 +65,6 @@ In this branch has been taken in account the application of three design pattern
 [diagram source code](img/plantuml/package-cloudapps-mastermind-types.plantuml)
 
 #### 3.6. cloudapps.utils package
-
-**Pending to be updated**
 
 ![PACKAGE-UTILS](img/package-cloudapps-utils.png)
 
