@@ -55,5 +55,16 @@
     <td class="tg-baqh">commit in modelViewPresenter branch</td>
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clase Visitador de Controladores para Técnica de Doble Despacho</span></td>
   </tr>
+  <tr>
+    <td class="tg-9wq8" rowspan="2">Design Patterns</td>
+    <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withComposite">mvp.pm.withComposite</a></td>
+    <td class="tg-baqh">branch</td>
+    <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clase Comando del menú y Controlador Compuesto de ciertos Estados para Open/Close con nuevos Casos de Uso aplicando </span><span style="font-weight:600">UndoRedo</span></td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/master">nextStep</a> (code)</td>
+    <td class="tg-baqh">branch</td>
+    <td class="tg-0lax">Weekend work</td>
+  </tr>
 </tbody>
 </table>
