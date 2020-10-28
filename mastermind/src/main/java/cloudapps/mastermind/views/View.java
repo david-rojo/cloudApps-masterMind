@@ -1,9 +1,9 @@
 package cloudapps.mastermind.views;
 
 import cloudapps.mastermind.controllers.AcceptorController;
-import cloudapps.mastermind.controllers.ControllersVisitor;
+import cloudapps.mastermind.controllers.ControllerVisitor;
 
-public abstract class View implements ControllersVisitor {
+public abstract class View implements ControllerVisitor {
 	
 	public abstract void interact(AcceptorController controller);
 	
