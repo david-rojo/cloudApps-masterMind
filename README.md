@@ -62,9 +62,9 @@
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clase Comando del menú y Controlador Compuesto de ciertos Estados para Open/Close con nuevos Casos de Uso aplicando </span><span style="font-weight:600">UndoRedo</span></td>
   </tr>
   <tr>
-    <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withProxy">mvp.pm.withProxy</a></td>
+    <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withProxy">mvp.pm.withProxy</a> Work in progress</td>
     <td class="tg-baqh">branch</td>
-    <td class="tg-0lax">Work in progress...</td>
+    <td class="tg-0lax">Clases Proxy para Open/Close para nuevas tecnologías de Despliegue</td>
   </tr>
 </tbody>
 </table>
