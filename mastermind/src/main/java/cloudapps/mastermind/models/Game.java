@@ -25,31 +25,11 @@ public class Game {
 		this.attempts = 0;
 	}
 
-	private void addValidatedProposedCombination(List<Color> colors) {
+	public void addProposedCombination(List<Color> colors) {
 		ProposedCombination proposedCombination = new ProposedCombination(colors);
 		this.proposedCombinations.add(proposedCombination);
 		this.results.add(this.secretCombination.getResult(proposedCombination));
 		this.attempts++;
-	}
-	
-	public Error addProposedCombination(List<Color> colors) {
-		if (colors.size() != Combination.getWidth()) {
-			return Error.WRONG_LENGTH;
-		} else {
-			for (int i = 0; i < colors.size(); i++) {
-				if (colors.get(i) == null) {
-					return Error.WRONG_CHARACTERS;
-				} else {
-					for (int j = i+1; j < colors.size(); j++) {
-						if (colors.get(i) == colors.get(j)) {
-							return Error.DUPLICATED;
-						}
-					}
-				}				
-			}
-		}
-		this.addValidatedProposedCombination(colors);
-		return Error.NULL;	
 	}
 
 	public boolean isLooser() {
@@ -104,6 +84,25 @@ public class Game {
 			clonedResults.add(r.copy());
 		}
 		return clonedResults;
+	}
+
+	public Error getProposedCombinationError(List<Color> colors) {
+		if (colors.size() != Combination.getWidth()) {
+			return Error.WRONG_LENGTH;
+		} else {
+			for (int i = 0; i < colors.size(); i++) {
+				if (colors.get(i) == null) {
+					return Error.WRONG_CHARACTERS;
+				} else {
+					for (int j = i+1; j < colors.size(); j++) {
+						if (colors.get(i) == colors.get(j)) {
+							return Error.DUPLICATED;
+						}
+					}
+				}				
+			}
+		}
+		return Error.NULL;
 	}
 	
 }

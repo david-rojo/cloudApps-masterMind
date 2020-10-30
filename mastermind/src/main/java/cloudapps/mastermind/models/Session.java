@@ -2,6 +2,8 @@ package cloudapps.mastermind.models;
 
 import java.util.List;
 
+import cloudapps.mastermind.distributed.dispatchers.FrameType;
+import cloudapps.mastermind.distributed.dispatchers.TCPIP;
 import cloudapps.mastermind.types.Color;
 import cloudapps.mastermind.types.Error;
 
@@ -10,14 +12,21 @@ public class Session {
 	private Game game;
 	private GameRegistry registry;
 	private State state;
+	private TCPIP tcpip;
 
-	public Session() {
+	public Session(TCPIP tcpip) {
 		this.state = new State();
 		this.game = new Game();
+		this.registry = new GameRegistry(this.game);
+        this.tcpip = tcpip;
 	}
 
 	public StateValue getValueState() {
-		return this.state.getValueState();
+		if (this.tcpip == null) {
+			return this.state.getValueState();
+		}
+		this.tcpip.send(FrameType.STATE.name());
+		return StateValue.values()[this.tcpip.receiveInt()];
 	}
 
 	public void next() {
@@ -27,6 +36,7 @@ public class Session {
 	public void reset() {
 		this.game.reset();
 		this.state.reset();
+		this.registry.reset();
 	}
 	
 	public boolean isWinner() {
@@ -53,12 +63,9 @@ public class Session {
 		return this.game.getColors(position);
 	}
 	
-	public Error addProposedCombination(List<Color> colors) {
-	    Error error = this.game.addProposedCombination(colors);
-	    if (error.isNull()){
-	    	this.registry.register();
-	    }
-	    return error;
+	public void addProposedCombination(List<Color> colors) {
+	    this.game.addProposedCombination(colors);
+	    this.registry.register();
 	}
 
 	public void undo() {
@@ -77,16 +84,16 @@ public class Session {
 		return this.registry.isRedoable();
 	}
 	
-	public void startRegistry() {
-		this.registry = new GameRegistry(this.game);
-	}
-	
 	public boolean isFinished() {
 		return this.game.isLooser() || this.game.isWinner();
 	}
 
 	public int getCombinationWidth() {
 		return this.game.getCombinationWidth();
+	}
+
+	public Error getProposedCombinationError(List<Color> colors) {
+		return this.game.getProposedCombinationError(colors);
 	}
 
 }

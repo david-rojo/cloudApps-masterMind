@@ -39,7 +39,7 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>cloudapps.mastermind.ConsoleMasterMind</mainClass>
+                  <mainClass>cloudapps.mastermind.MasterMindStandalone</mainClass>
                 </transformer>
               </transformers>
             </configuration>

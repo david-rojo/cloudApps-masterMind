@@ -2,7 +2,7 @@ package cloudapps.mastermind.controllers;
 
 import cloudapps.mastermind.models.Session;
 
-public class RedoController extends UseCaseController {
+public class RedoController extends Controller {
 
 	RedoController(Session session) {
 	    super(session);

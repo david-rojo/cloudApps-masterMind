@@ -6,7 +6,7 @@ import cloudapps.mastermind.models.Session;
 import cloudapps.mastermind.types.Color;
 import cloudapps.mastermind.types.Error;
 
-public class ActionController extends UseCaseController {
+public class ActionController extends Controller {
 
 	public ActionController(Session session) {
 	    super(session);
@@ -18,6 +18,10 @@ public class ActionController extends UseCaseController {
 
 	public boolean isLooser() {
 		return this.session.isLooser();
+	}
+	
+	public boolean isFinished() {
+		return this.session.isFinished();
 	}
 
 	public int getAttempts() {
@@ -36,16 +40,20 @@ public class ActionController extends UseCaseController {
 		return this.session.getWhites(position);
 	}
 	
-	public Error addProposedCombination(List<Color> colors) {
-		Error error = this.session.addProposedCombination(colors);
-		if (error.isNull() && this.session.isFinished()) {
-			this.session.next();
-		}
-		return error;
+	public void addProposedCombination(List<Color> colors) {
+		this.session.addProposedCombination(colors);
 	}
 
 	public int getCombinationWidth() {
 		return this.session.getCombinationWidth();		
 	}	
+	
+	public void continueState() {
+		this.session.next();
+	}
+
+	public Error getProposedCombinationError(List<Color> colors) {
+		return this.session.getProposedCombinationError(colors);
+	}
 	
 }
