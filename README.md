@@ -13,19 +13,19 @@
 </thead>
 <tbody>
   <tr>
-    <td class="tg-9wq8">Design</td>
+    <td class="tg-9wq8"><b>Design</b></td>
     <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/domainModel">domainModel</a></td>
     <td class="tg-baqh">branch</td>
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clases del Modelo del Dominio </span><span style="font-weight:600">pero acopladas a tecnologías de interfaz ahora y todas con la Ley del Cambio Continuo y de granos grueso con el advenimiento de nueva funcionalidad</span></td>
   </tr>
   <tr>
-    <td class="tg-9wq8">Modular Design</td>
+    <td class="tg-9wq8"><b>Modular Design</b></td>
     <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/documentView">documentView</a></td>
     <td class="tg-baqh">branch</td>
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clases Vistas de Texto separadas de los Modelos del Dominio </span><span style="font-weight:600">pero con Modelos de grano grueso con el advenimiento de nueva funcionalidad</span></td>
   </tr>
   <tr>
-    <td class="tg-9wq8" rowspan="6">Object Oriented Design</td>
+    <td class="tg-9wq8" rowspan="6"><b>Object Oriented Design</b></td>
     <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/commit/8e7d4db490cd3659d6a3a05ea7b53e32b4ad0dc9">dv.withoutFactoryMethod</a> (code)</td>
     <td class="tg-baqh">commit in modelViewPresenter branch</td>
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clase Vistas de Interfaz Gráfica de Usuario </span><span style="font-weight:600">pero con DRY en Vistas de tecnologías diferentes y con Modelos de grano grueso con el advenimiento de nueva funcionalidad</span></td>
@@ -56,10 +56,15 @@
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clase Visitador de Controladores para Técnica de Doble Despacho</span></td>
   </tr>
   <tr>
-    <td class="tg-9wq8" rowspan="2">Design Patterns</td>
+    <td class="tg-9wq8" rowspan="3"><b>Design Patterns</b></td>
     <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withComposite">mvp.pm.withComposite</a></td>
     <td class="tg-baqh">branch</td>
     <td class="tg-0pky"><span style="font-weight:400;font-style:normal">Clase Comando del menú y Controlador Compuesto de ciertos Estados para Open/Close con nuevos Casos de Uso aplicando </span><span style="font-weight:600">UndoRedo</span></td>
+  </tr>
+  <tr>
+    <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/commit/314a305d8084e69d7b873094077ba38199a9e485">mvp.pm.withoutProxy</a> (code)<i></i></td>
+    <td class="tg-baqh">commit</td>
+    <td class="tg-0lax">Clase TCP/IP para tecnología de Despliegue pero con Controladores acoplados, poco cohesivos y grano grueso con cada nueva tecnología</td>
   </tr>
   <tr>
     <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withProxy">mvp.pm.withProxy</a> <i>(Work in progress)</i></td>
