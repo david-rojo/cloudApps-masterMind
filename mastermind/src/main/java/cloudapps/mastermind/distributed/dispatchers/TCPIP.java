@@ -43,14 +43,6 @@ public class TCPIP extends cloudapps.utils.TCPIP {
 		super(serverSocket, socket);
 	}
 
-//	public void send(PlayerType value) {
-//		if (value == null) {
-//			this.send("null");
-//		}else {
-//			this.send(value.name());			
-//		}
-//	}
-
 	public void send(Error value) {
 		if (value == null) {
 			this.send("null");
@@ -74,15 +66,6 @@ public class TCPIP extends cloudapps.utils.TCPIP {
 		}
 		return Color.valueOf(color);
 	}
-
-//	public PlayerType receivePlayerType() {
-//		String playerType = this.receiveLine();
-//		if (playerType.equals("null")) {
-//			return null;
-//		}else {
-//			return PlayerType.valueOf(playerType);			
-//		}
-//	}
 
 	public void close() {
 		this.send(FrameType.CLOSE.name());
