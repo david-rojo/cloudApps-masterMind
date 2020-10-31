@@ -1,31 +1,18 @@
 package cloudapps.mastermind.controllers;
 
-import cloudapps.mastermind.distributed.dispatchers.FrameType;
-import cloudapps.mastermind.distributed.dispatchers.TCPIP;
 import cloudapps.mastermind.models.Session;
 
-public class ResumeController extends AcceptorController {
+public abstract class ResumeController extends AcceptorController {
 
-	public ResumeController(Session session, TCPIP tcpip) {
-		super(session, tcpip);
+	public ResumeController(Session session) {
+		super(session);
 	}
 
-	public void resume(boolean newGame) {
-		if (this.tcpip == null) {
-			if (newGame){
-				this.session.reset();
-			} else {
-				this.session.next();
-			}
-		} else {
-			this.tcpip.send(FrameType.NEW_GAME.name());
-			this.tcpip.send(newGame);
-		}
-	}
+	public abstract void resume(boolean newGame);
 
 	@Override
-	public void accept(ControllersVisitor controllerVisitor) {
-		controllerVisitor.visit(this);
+	public void accept(ControllersVisitor controllersVisitor) {
+		controllersVisitor.visit(this);
 	}
 
 }

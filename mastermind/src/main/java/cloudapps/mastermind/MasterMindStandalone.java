@@ -1,10 +1,13 @@
 package cloudapps.mastermind;
 
+import cloudapps.mastermind.controllers.Logic;
+import cloudapps.mastermind.controllers.implementation.LogicImplementation;
+
 public class MasterMindStandalone extends MasterMind{
 
 	@Override
-	protected boolean isStandalone() {
-		return true;
+	protected Logic createLogic() {
+		return new LogicImplementation();
 	}
 
 	public static void main(String[] args) {

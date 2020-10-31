@@ -1,18 +1,23 @@
 package cloudapps.mastermind.controllers;
 
 import cloudapps.mastermind.models.Session;
+import cloudapps.mastermind.models.SessionImplementation;
 
 public class UndoController extends Controller {
 
-	UndoController(Session session) {
+	private SessionImplementation sessionImplementation;
+
+    public UndoController(Session session) {
 		super(session);
+		this.sessionImplementation = ((SessionImplementation) this.session);
 	}
 
-	void undo() {
-		this.session.undo();
+	public void undo() {
+		this.sessionImplementation.undo();
 	}
 
-	boolean undoable() {
-		return this.session.undoable();
+	public boolean undoable() {
+		return this.sessionImplementation.undoable();
 	}
+	
 }

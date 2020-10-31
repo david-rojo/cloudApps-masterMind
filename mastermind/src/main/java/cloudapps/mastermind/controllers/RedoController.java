@@ -1,18 +1,23 @@
 package cloudapps.mastermind.controllers;
 
 import cloudapps.mastermind.models.Session;
+import cloudapps.mastermind.models.SessionImplementation;
 
 public class RedoController extends Controller {
 
-	RedoController(Session session) {
-	    super(session);
-	  }
+	private SessionImplementation sessionImplementation;
 
-	  void redo() {
-	    this.session.redo();
-	  }
+    public RedoController(Session session) {
+		super(session);
+		this.sessionImplementation = ((SessionImplementation) this.session);
+	}
 
-	  boolean redoable() {
-	    return this.session.redoable();
-	  }
+	public void redo() {
+		this.sessionImplementation.redo();
+	}
+
+	public boolean redoable() {
+		return this.sessionImplementation.redoable();
+	}
+	
 }

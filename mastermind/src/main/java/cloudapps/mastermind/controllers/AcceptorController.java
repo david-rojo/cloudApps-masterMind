@@ -1,21 +1,15 @@
 package cloudapps.mastermind.controllers;
 
-import cloudapps.mastermind.distributed.dispatchers.TCPIP;
 import cloudapps.mastermind.models.Session;
 
-public abstract class AcceptorController  extends Controller {
-	
-protected TCPIP tcpip;
+public abstract class AcceptorController extends Controller {
     
-    AcceptorController(Session session, TCPIP tcpip) {
+    AcceptorController(Session session) {
 		super(session);
-		this.tcpip = tcpip;
 	}
 
+    public abstract int getCombinationWidth();
+    
 	public abstract void accept(ControllersVisitor controllersVisitor);
-	
-	public int getCombinationWidth() {
-		return this.session.getCombinationWidth();
-	}
 	
 }
