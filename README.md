@@ -67,9 +67,15 @@
     <td class="tg-0lax">Clase TCP/IP para tecnología de Despliegue pero con Controladores acoplados, poco cohesivos y grano grueso con cada nueva tecnología</td>
   </tr>
   <tr>
-    <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withProxy">mvp.pm.withProxy</a> <i>(Work in progress)</i></td>
+    <td class="tg-baqh"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pm.withProxy">mvp.pm.withProxy</a></td>
     <td class="tg-baqh">branch</td>
     <td class="tg-0lax">Clases Proxy para Open/Close para nuevas tecnologías de Despliegue</td>
+  </tr>
+   <tr>
+    <td class="tg-9wq8"><b>MVC Architecture</b></td>
+    <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pv">mvp.pv</a> <i>(Work in progress)</i></td>
+    <td class="tg-baqh">branch</td>
+    <td class="tg-0pky">Baile de la Triada<br>Los controladores mandan sobre las vistas</td>
   </tr>
 </tbody>
 </table>
