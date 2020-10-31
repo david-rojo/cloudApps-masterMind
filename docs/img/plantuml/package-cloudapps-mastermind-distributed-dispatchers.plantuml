@@ -1,0 +1,170 @@
+@startuml Package **cloudapps.mastermind.distributed.dispatchers**
+
+package "cloudapps.mastermind.distributed.dispatchers" {
+  
+  class AddProposedCombinationDispatcher extends Dispatcher {
+    +AddProposedCombinationDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  class AttemptsDispatcher extends Dispatcher {
+    +AttemptsDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  class BlacksDispatcher extends Dispatcher {
+    +BlacksDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  class ColorsOfPositionDispatcher extends Dispatcher {
+    +ColorsOfPositionDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  class CombinationWidthDispatcher extends Dispatcher {
+    +CombinationWidthDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  class ContinueStateDispatcher extends Dispatcher {
+    +ContinueStateDispatcher(PlayController)
+    +dispatch(): void
+  } 
+  
+  abstract class Dispatcher {
+    #AcceptorController acceptorControler
+    #TCPIP tcpip
+    +Dispatcher(AcceptorController)
+    +{abstract}dispatch(): void
+    +associate(TCPIP): void
+  }
+
+  class DispatcherPrototype {
+    -TCPIP tcpip
+    -Map<FrameType, Dispatcher> dispatcherMap
+    +DispatcherPrototype()
+    +addFrame(FrameType, Dispatcher): void
+    +dispatch(FrameType): void
+    +serve(): void
+  }
+
+  class FinishedDispatcher extends Dispatcher {
+    +FinishedDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  enum FrameType {
+    START,
+    STATE,
+    UNDO, 
+    REDO, 
+    UNDOABLE, 
+    REDOABLE,
+    CLOSE,
+    CONTINUE_STATE,
+    NEW_GAME,
+    WINNER,
+    LOOSER,
+    ATTEMPTS,
+    BLACKS,
+    WHITES,
+    ADD_PROPOSED_COMBINATION,
+    COMBINATION_WIDTH,
+    COLORS_OF_POSITION,
+    ERRORS_PROPOSED_COMBINATION,
+    FINISHED
+    +parser(String): FrameType
+  }
+
+  class LooserDispatcher extends Dispatcher {
+    +LooserDispatcher(PlayController)
+    +dispatch(): void
+  }
+  
+  class ResumeDispatcher extends Dispatcher {
+    +ResumeDispatcher(ResumeController)
+    +dispatch(): void
+  } 
+
+  class StartDispatcher extends Dispatcher {
+    +StartDispatcher(StartController)
+    +dispatch(): void
+  } 
+
+  class StateDispatcher extends Dispatcher {
+    +StateDispatcher(PlayController)
+    +dispatch(): void
+  } 
+  
+  class TCPIP extends cloudapps.utils.TCPIP {
+    +{static}createClientSocket(): TCPIP
+    +{static}createServerSocket(): TCPIP
+    +TCPIP(ServerSocket, Socket)
+    +TCPIP(Socket)
+    +close(): void
+    +receiveColor(): Color
+    +receiveError(): Error
+    +send(Color): void
+    +send(Error): void
+  }
+
+  class WhitesDispatcher extends Dispatcher {
+    +WhitesDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  class WinnerDispatcher extends Dispatcher {
+    +WinnerDispatcher(PlayController)
+    +dispatch(): void
+  } 
+
+  AddProposedCombinationDispatcher ..> cloudapps.mastermind.controllers.PlayController
+  AddProposedCombinationDispatcher ..> cloudapps.mastermind.types.Color
+  AddProposedCombinationDispatcher ..> java.util.List
+  AddProposedCombinationDispatcher ..> java.util.ArrayList
+
+  AttemptsDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  BlacksDispatcher ..> cloudapps.mastermind.controllers.PlayController
+  
+  ColorsOfPositionDispatcher ..> cloudapps.mastermind.controllers.PlayController
+  ColorsOfPositionDispatcher ..> cloudapps.mastermind.types.Color
+  ColorsOfPositionDispatcher ..> java.util.List
+
+  CombinationWidthDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  ContinueStateDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  Dispatcher *--> cloudapps.mastermind.controllers.AcceptorController
+  Dispatcher *--> TCPIP
+
+  DispatcherPrototype *--> TCPIP
+  DispatcherPrototype *--> Dispatcher
+  DispatcherPrototype *--> FrameType
+  DispatcherPrototype *--> java.util.Map
+  DispatcherPrototype ..> java.util.HashMap
+
+  FinishedDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  LooserDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  ResumeDispatcher ..> cloudapps.mastermind.controllers.ResumeDispatcher
+
+  StartDispatcher ..> cloudapps.mastermind.controllers.ResumeDispatcher
+
+  StateDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  TCPIP ..> cloudapps.mastermind.types.Color
+  TCPIP ..> cloudapps.mastermind.types.Error
+  TCPIP ..> java.io.IOException
+  TCPIP ..> java.net.ServerSocket
+  TCPIP ..> java.net.Socket
+
+  WhitesDispatcher ..> cloudapps.mastermind.controllers.PlayController
+
+  WinnerDispatcher ..> cloudapps.mastermind.controllers.PlayController
+  
+}
+
+@enduml

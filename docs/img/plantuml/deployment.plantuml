@@ -1,0 +1,42 @@
+@startuml deployment
+
+folder clientServer {
+
+    node server #DDDDDD [
+        <b>Server Computer
+        ----
+        memory: xxx Mb
+        cpu: xxx GHz
+    ]
+
+    node client #DDDDDD [
+        <b>Client Computer
+        ----
+        memory: xxx Mb
+        cpu: xxx GHz
+    ]
+
+    component mastermindServer.jar
+    component mastermindClient.jar
+
+    server *--> mastermindServer.jar
+    client *--> mastermindClient.jar
+
+    client -right-> server: TCP/IP
+}
+
+folder standalone {
+
+    node computer #DDDDDD [
+        <b>Personal Computer
+        ----
+        memory: xxx Mb
+        cpu: xxx GHz
+    ]
+
+    component mastermind.jar
+
+    computer *--> mastermind.jar
+}
+
+@enduml

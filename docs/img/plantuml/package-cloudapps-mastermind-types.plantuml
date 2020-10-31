@@ -1,0 +1,25 @@
+@startuml Package **cloudapps.mastermind.types**
+
+package "cloudapps.mastermind.types" {
+  
+  enum Color {
+    RED
+    BLUE
+    YELLOW
+    GREEN
+    ORANGE
+    PURPLE
+    +{static} length(): int
+  }
+  
+  enum Error {
+    DUPLICATED
+    WRONG_CHARACTERS
+    WRONG_LENGTH
+    NULL
+    +isNull(): boolean
+  }
+
+}
+
+@enduml

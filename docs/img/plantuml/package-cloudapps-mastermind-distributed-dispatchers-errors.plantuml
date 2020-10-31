@@ -1,0 +1,17 @@
+@startuml Package **cloudapps.mastermind.distributed.dispatchers.errors**
+
+package "cloudapps.mastermind.distributed.dispatchers.errors" {
+  
+  class ErrorsProposedCombinationDispatcher extends cloudapps.mastermind.distributed.dispatchers.Dispatcher {
+    +ErrorsProposedCombinationDispatcher(PlayController)
+    +dispatch(): void
+  }
+
+  ErrorsProposedCombinationDispatcher ..> cloudapps.mastermind.controllers.PlayController
+  ErrorsProposedCombinationDispatcher ..> cloudapps.mastermind.types.Color
+  ErrorsProposedCombinationDispatcher ..> java.util.List
+  ErrorsProposedCombinationDispatcher ..> java.util.ArrayList
+
+}
+
+@enduml

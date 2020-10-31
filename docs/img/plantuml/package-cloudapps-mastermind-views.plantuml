@@ -1,0 +1,193 @@
+@startuml Package **cloudapps.mastermind.views**
+
+package "cloudapps.mastermind.views" {
+
+  class AttemptsView extends cloudapps.utils.WithConsoleView {
+    -PlayController PlayController
+    ~AttemptsView(PlayController)
+    ~writeln(): void
+  }
+
+  class ColorView {
+    +{static}{final}char[] INITIALS
+    #Color color
+    ~{static}allInitials(): String
+    +getInstance(char): Color
+    +ColorView(Color)
+    +getInitial(): char
+    ~write(): void
+  }
+
+  abstract class Command extends cloudapps.utils.Command {
+    #Console console
+    #PlayController playController
+    #Command(String, PlayController)
+  }
+
+  class ConsoleView extends View implements cloudapps.mastermind.controllers.ControllersVisitor {
+    -StartView startView
+    -PlayView playView
+    -ResumeView resumeView  
+    +ConsoleView()
+    +interact(AcceptorController): void
+    +visit(StartController): void
+    +visit(PlayController): void
+    +visit(ResumeController): void
+  }
+  
+  class ErrorView {
+    +{static}{final}String[] MESSAGES
+    #Error error
+    +ErrorView(Error)
+    +getMessage(): String
+    ~writeln(): void
+  }
+  
+  enum MessageView {
+    ATTEMPTS
+	  SECRET
+	  RESUME
+	  RESULT
+	  PROPOSED_COMBINATION
+	  ACTION_COMMAND
+	  UNDO_COMMAND
+	  REDO_COMMAND
+	  TITLE
+	  WINNER
+	  LOOSER
+    -String message
+    -MessageView(String)
+    +getMessage(): String
+  }
+
+  class PlayCommand extends Command {
+    ~PlayCommand(PlayController)
+    #execute(): void
+    #isActive(): boolean
+  } 
+
+  class PlayMenu extends cloudapps.utils.Menu {
+    ~PlayMenu(PlayController)
+  }
+
+  class PlayView extends cloudapps.utils.WithConsoleView {
+    ~interact(PlayController): void
+  }
+
+  class ProposedCombinationView extends cloudapps.utils.WithConsoleView {
+    -PlayController playController
+    ~ProposedCombinationView(PlayController)
+    ~read(): List<Color>
+    ~write(int): void
+  }
+
+  class RedoCommand extends Command {
+    ~RedoCommand(PlayController)
+    #execute(): void
+    #isActive(): boolean
+  }
+
+  class ResultView extends cloudapps.utils.WithConsoleView {
+    -PlayController playController
+    ~ResultView(PlayController)
+    ~writeln(int): void
+  }
+
+  class ResumeView {
+    ~interact(ResumeController): void
+  }
+
+  class SecretCombinationView extends cloudapps.utils.WithConsoleView {
+    -AcceptorController controller
+    ~SecretCombinationView(AcceptorController)
+    ~writeln(): void
+  }
+
+  class StartView extends cloudapps.utils.WithConsoleView {
+    -SecretCombinationView secretCombinationView
+    ~interact(StartController): void
+  }
+
+  class UndoCommand extends Command {
+    ~UndoCommand(PlayController)
+    #execute(): void
+    #isActive(): boolean
+  }
+
+  class View implements cloudapps.mastermind.controllers.ControllersVisitor {
+    -StartView startView
+    -PlayView playView
+    -Resumeiew resumeView
+    +View()
+    +interact(AcceptorController): void
+    +visit(PlayController): void
+    +visit(ResumeController): void
+    +visit(StartController): void
+  }
+  
+  AttemptsView *--> cloudapps.mastermind.controllers.PlayController
+
+  ColorView *--> cloudapps.mastermind.types.Color
+  ColorView ..> cloudapps.utils.Console
+
+  Command *--> cloudapps.mastermind.controllers.PlayController
+  Command *--> cloudapps.utils.Console
+
+  ConsoleView *--> StartView
+  ConsoleView *--> PlayView
+  ConsoleView *--> ResumeView
+  ConsoleView..> cloudapps.mastermind.controllers.AcceptorController
+  ConsoleView..> cloudapps.mastermind.controllers.StartController
+  ConsoleView..> cloudapps.mastermind.controllers.PlayController
+  ConsoleView..> cloudapps.mastermind.controllers.ResumeController
+
+  ErrorView ..> cloudapps.mastermind.types.Error
+  ErrorView ..> cloudapps.utils.Console
+
+  PlayCommand ..> cloudapps.mastermind.types.Color
+  PlayCommand ..> cloudapps.mastermind.views.MessageView
+  PlayCommand ..> cloudapps.mastermind.controllers.PlayController
+  PlayCommand ..> java.util.List
+
+  PlayMenu ..> cloudapps.mastermind.controllers.PlayController
+
+  PlayView ..> cloudapps.mastermind.controllers.PlayController
+
+  ProposedCombinationView *--> cloudapps.mastermind.controllers.PlayController
+  ProposedCombinationView ..> cloudapps.mastermind.types.Color
+  ProposedCombinationView ..> cloudapps.mastermind.types.Error
+  ProposedCombinationView ..> cloudapps.mastermind.views.MessageView
+  ProposedCombinationView ..> java.util.ArrayList
+  ProposedCombinationView ..> java.util.List
+
+  RedoCommand ..> cloudapps.mastermind.controllers.PlayController
+  RedoCommand ..> cloudapps.mastermind.views.MessageView
+
+  ResultView *--> cloudapps.mastermind.controllers.PlayController
+  ResultView ..> cloudapps.mastermind.views.MessageView
+
+  ResumeView ..> cloudapps.mastermind.controllers.ResumeController
+  ResumeView ..> cloudapps.mastermind.views.MessageView
+  ResumeView ..> cloudapps.utils.YesNoDialog
+
+  SecretCombinationView *--> cloudapps.mastermind.controllers.AcceptorController
+  SecretCombinationView ..> cloudapps.mastermind.views.MessageView
+
+  StartView *--> SecretCombinationView
+  StartView ..> cloudapps.mastermind.controllers.StartController
+  StartView ..> cloudapps.mastermind.views.MessageView
+
+  UndoCommand *--> cloudapps.mastermind.controllers.PlayController
+  UndoCommand ..> cloudapps.mastermind.views.MessageView
+  
+  View *--> StartView
+  View *--> PlayView
+  View *--> ResumeView
+  View ..> cloudapps.mastermind.controllers.AcceptorController
+  View ..> cloudapps.mastermind.controllers.StartController
+  View ..> cloudapps.mastermind.controllers.PlayController
+  View ..> cloudapps.mastermind.controllers.ResumeController
+  
+}
+
+@enduml

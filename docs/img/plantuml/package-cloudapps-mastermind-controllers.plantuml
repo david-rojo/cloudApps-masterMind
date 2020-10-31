@@ -1,0 +1,127 @@
+@startuml Package **cloudapps.mastermind.controllers**
+
+package "cloudapps.mastermind.controllers" {
+
+  abstract class AcceptorController extends Controller {
+    ~AcceptorController(Session)
+    +{abstract}accept(ControllersVisitor): void
+    +{abstract}getCombinationWidth(): int
+  }
+
+  class ActionController extends Controller {
+    -SessionImplementation sessionImplementation
+    +ActionController(Session)
+    +addProposedCombination(List<Color>): void
+    +continueState(): void
+    +getAttempts(): int
+    +getBlacks(int): int
+    +getColors(int): List<Color>
+    +getCombinationWidth(): int
+    +getProposedCombinationError(List<Color>): Error
+    +getWhites(int): int
+    +isFinished(): boolean
+    +isLooser(): boolean
+    +isWinner(): boolean
+  }
+  
+  abstract class Controller {
+    #Session session
+    ~Controller(Session)
+    +getValueState(): StateValue
+  }
+
+  interface ControllersVisitor {
+    ~visit(StartController): void
+    ~visit(PlayController): void
+    ~visit(ResumeController): void
+  }
+
+  class Logic {
+    #Session session
+    #Map<StateValue, AcceptorController> acceptorControllers
+    #Logic()
+    +getController(): AcceptorController
+  }
+
+  abstract class PlayController extends AcceptorController {
+    +PlayController(Session)
+    +accept(ControllersVisitor)
+    +addProposedCombination(List<Color>): void
+    +continueState(): void
+    +getAttempts(): int
+    +getBlacks(int): int
+    +getColors(int): List<Color>
+    +getProposedCombinationError(List<Color>): Error
+    +getWhites(int): int
+    +isLooser(): boolean
+    +isWinner(): boolean
+    +redo(): void
+    +redoable(): boolean
+    +undo(): void
+    +undoable(): boolean
+  }
+
+  class RedoController extends Controller {
+    -SessionImplementation sessionImplementation
+    +RedoController(Session)
+    +redo(): void
+    +redoable(): boolean
+  }
+
+  abstract class ResumeController extends AcceptorController {
+    +ResumeController(Session)
+    +accept(ControllersVisitor): void
+    +{abstract}resume(boolean): void
+  }
+
+  class StartController extends AcceptorController {
+    +StartController(Session)
+    +accept(ControllersVisitor): void
+    +{abstract}start(): void
+  }
+
+  class UndoController extends Controller {
+    -SessionImplementation sessionImplementation
+    +UndoController(Session)
+    +undo(): void
+    +undoable(): boolean
+  }
+
+  AcceptorController ..> cloudapps.mastermind.models.Session
+
+  ActionController *--> cloudapps.mastermind.models.SessionImplementation
+  ActionController ..> cloudapps.mastermind.models.Session
+  ActionController ..> cloudapps.mastermind.models.Session
+  ActionController ..> cloudapps.mastermind.types.Color
+  ActionController ..> cloudapps.mastermind.types.Error
+
+  Controller *--> cloudapps.mastermind.models.Session
+  Controller ..> cloudapps.mastermind.models.StateValue
+
+  ControllersVisitor ..> StartController
+  ControllersVisitor ..> PlayController
+  ControllersVisitor ..> ResumeController
+  
+  Logic *--> cloudapps.mastermind.models.Session
+  Logic *--> cloudapps.mastermind.models.StateValue
+  Logic *--> AcceptorController
+  Logic *..> java.util.HashMap
+  Logic ..> java.util.Map
+
+  PlayController ..> java.util.List
+  PlayController ..> cloudapps.mastermind.models.Session
+  PlayController ..> cloudapps.mastermind.types.Color
+  PlayController ..> cloudapps.mastermind.types.Error
+
+  RedoController *--> cloudapps.mastermind.models.SessionImplementation
+  RedoController ..> cloudapps.mastermind.models.Session
+  
+  ResumeController ..> cloudapps.mastermind.models.Session
+
+  StartController ..> cloudapps.mastermind.models.Session
+
+  UndoController *--> cloudapps.mastermind.models.SessionImplementation
+  UndoController ..> cloudapps.mastermind.models.Session
+}
+
+@enduml

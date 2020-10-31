@@ -1,0 +1,165 @@
+@startuml Package **cloudapps.mastermind.models**
+
+package "cloudapps.mastermind.models" {
+
+  abstract class Combination {
+    -{static} final int WIDTH
+    #List<Color> colors
+    #Combination()
+    +{static}getWidth(): int 
+  }
+
+  class Game {
+    -{static}final int MAX_LONG
+    -SecretCombination secretCombination
+    -List<ProposedCombination> proposedCombinations
+    -List<Result> results
+    -int attempts
+    +Game()
+    +addProposedCombination(List<Color>): Error
+    -addValidatedProposedCombination(List<Color>): void
+    -copyProposedCombinations(): List<ProposedCombination>
+    -copyResults(): List<Results)
+    +createMemento(): GameMemento
+    +getAttempts(): int
+    +getBlacks(int): int
+    +getColors(int): List<Color>
+    +getCombinationWidth(): int
+    +getWhites(int): int
+    +isLooser(): void
+    +isWinner(): void
+    +reset(): void
+    +set(GameMemento): void
+  }
+
+  class GameMemento {
+    -List<ProposedCombination> proposedCombinations
+    -List<Result> results
+    -int attempts
+    +GameMemento(List<ProposedCombination>, List<Result>, int)
+    ~getAttempts(): int
+    +getProposedCombinations(): List<ProposedCombination>
+    +getResults(): List<Result>
+    +setProposedCombinations(List<ProposedCombination>): void
+    +setResults(List<Result> results)
+  } 
+
+  class GameRegistry {
+    -List<GameMemento> mementos
+    -Game game
+    -int firstPrevious
+    ~GameRegistry(Game game)
+    ~isRedoable(): boolean
+    ~isUndoable(): boolean
+    ~redo(): void
+    ~register(): void
+    ~undo(): void
+  }
+  
+  class ProposedCombination extends Combination {
+    ~ProposedCombination(List<Color>)
+    ~contains(Color): boolean
+    ~contains(Color, int): boolean
+    #copy(): ProposedCombination
+  }
+
+  class Result {
+    -int blacks
+    -int whites
+    ~Result(int, int)
+    #copy(): Result
+    ~getBlacks(): int
+    ~getWhites(): int
+    ~isWinner(): boolean
+  }
+
+  class SecretCombination extends Combination {
+    ~SecretCombination()
+    ~getResult(ProposedCombination): Result
+  }
+
+  interface Session {
+    +getValueState(): StateValue
+  }
+
+  class SessionImplementation implements Session {
+    -Game game
+	  -GameRegistry registry
+	  -State state
+    +SessionImplementation()
+    +addProposedCombination(List<Color>): void
+    +getAttempts(): int
+    +getBlacks(int): int
+    +getColors(int): List<Color>
+    +getCombinationWidth(): int
+    +getProposedCombinationError(): int
+    +getValueState(): StateValue
+    +getWhites(int): int
+    +isFinished(): boolean
+    +isLooser(): boolean
+    +isWinner(): boolean
+    +next(): void
+    +redo(): void
+    +redoable(): boolean
+    +reset(): void
+    +undo(): void
+    +undoable(): boolean
+  }
+
+  class State {
+    -StateValue stateValue
+    +State()
+    +getValueState(): StateValue
+    +next(): void
+    +reset(): void
+  }  
+
+  enum StateValue {
+    INITIAL,
+    IN_GAME,
+    FINAL,
+    EXIT
+  }
+
+  Combination *--> cloudapps.mastermind.types.Color
+  Combination ..> java.util.ArrayList
+  Combination *--> java.util.List
+
+  Game *--> SecretCombination
+  Game *--> ProposedCombination
+  Game *--> Result
+  Game ..> cloudapps.mastermind.types.Color
+  Game ..> cloudapps.mastermind.types.Error
+  Game ..> java.util.ArrayList
+  Game *--> java.util.List
+  
+  GameMemento *--> ProposedCombination
+  GameMemento *--> Result
+  GameMemento *--> java.util.List
+
+  GameRegistry *--> GameMemento
+  GameRegistry *--> Game
+  GameRegistry ..> java.util.ArrayList
+  GameRegistry *--> java.util.List
+
+  ProposedCombination ..> cloudapps.mastermind.types.Color
+  ProposedCombination ..> java.util.List
+  ProposedCombination ..> java.util.stream.Collectors
+
+  SecretCombination ..> cloudapps.mastermind.types.Color
+  SecretCombination ..> java.util.Collections
+  SecretCombination ..> java.util.Random
+
+  Session --> ValueState
+
+  SessionImplementation *--> Game
+  SessionImplementation *--> GameRegistry
+  SessionImplementation *--> State
+  SessionImplementation ..> cloudapps.mastermind.types.Color
+  SessionImplementation ..> cloudapps.mastermind.types.Error
+  SessionImplementation ..> java.util.List
+
+  State *--> StateValue 
+}
+
+@enduml

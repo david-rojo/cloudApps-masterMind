@@ -1,0 +1,84 @@
+@startuml mastermind-architecture
+
+namespace cloudapps.mastermind.models #DDDDDD {}
+
+namespace cloudapps.utils #DDDDDD {}
+
+namespace java.io {}
+
+namespace java.util.stream {}
+
+namespace java.util {}
+
+namespace java.net {}
+
+namespace cloudapps.mastermind.controllers.implementation #DDDDDD {}
+
+namespace cloudapps.mastermind.controllers #DDDDDD {}
+
+namespace cloudapps.mastermind.distributed.dispatchers.errors #DDDDDD {}
+
+namespace cloudapps.mastermind.distributed.dispatchers.undoredo #DDDDDD {}
+
+namespace cloudapps.mastermind.distributed.dispatchers #DDDDDD {}
+
+namespace cloudapps.mastermind.distributed #DDDDDD {}
+
+namespace cloudapps.mastermind.types #DDDDDD {}
+
+namespace cloudapps.mastermind.views #DDDDDD {}
+
+namespace cloudapps.mastermind #DDDDDD {}
+
+namespace java {}
+
+cloudapps.mastermind ..> cloudapps.mastermind.views
+cloudapps.mastermind ..> cloudapps.mastermind.controllers
+
+cloudapps.mastermind.controllers ..> cloudapps.mastermind.models
+cloudapps.mastermind.controllers ..> cloudapps.mastermind.types
+cloudapps.mastermind.controllers ..> java.util
+
+cloudapps.mastermind.controllers.implementation ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.controllers.implementation ..> cloudapps.mastermind.types
+cloudapps.mastermind.controllers.implementation ..> cloudapps.mastermind.models
+cloudapps.mastermind.controllers.implementation ..> java.util
+
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.controllers.implementation
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.distributed.dispatchers.undoredo
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.distributed.dispatchers.errors
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.distributed.dispatchers
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.distributed ..> cloudapps.mastermind
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.types
+cloudapps.mastermind.distributed ..> cloudapps.mastermind.models
+cloudapps.mastermind.distributed ..> java.util
+
+cloudapps.mastermind.distributed.dispatchers ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.distributed.dispatchers ..> cloudapps.mastermind.types
+cloudapps.mastermind.distributed.dispatchers ..> cloudapps.utils
+cloudapps.mastermind.distributed.dispatchers ..> java.io
+cloudapps.mastermind.distributed.dispatchers ..> java.util
+cloudapps.mastermind.distributed.dispatchers ..> java.net
+
+cloudapps.mastermind.distributed.dispatchers.errors ..> cloudapps.mastermind.distributed.dispatchers
+cloudapps.mastermind.distributed.dispatchers.errors ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.distributed.dispatchers.errors ..> cloudapps.mastermind.types
+cloudapps.mastermind.distributed.dispatchers.errors ..> java.util
+
+cloudapps.mastermind.distributed.dispatchers.undoredo ..> cloudapps.mastermind.distributed.dispatchers
+cloudapps.mastermind.distributed.dispatchers.undoredo ..> cloudapps.mastermind.controllers
+
+cloudapps.mastermind.models ..> cloudapps.mastermind.types
+cloudapps.mastermind.models ..> java.util
+cloudapps.mastermind.models ..> java.util.stream
+
+cloudapps.mastermind.views ..> cloudapps.mastermind.controllers
+cloudapps.mastermind.views ..> cloudapps.mastermind.types
+cloudapps.mastermind.views ..> cloudapps.utils
+cloudapps.mastermind.views ..> java.util
+
+cloudapps.utils ..> java.io
+cloudapps.utils ..> java.util
+
+@enduml

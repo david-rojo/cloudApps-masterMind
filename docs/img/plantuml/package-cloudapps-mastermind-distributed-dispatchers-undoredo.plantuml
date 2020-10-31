@@ -1,0 +1,35 @@
+@startuml Package **cloudapps.mastermind.distributed.dispatchers.undoredo**
+
+package "cloudapps.mastermind.distributed.dispatchers.undoredo" {
+  
+  class RedoableDispatcher extends cloudapps.mastermind.distributed.dispatchers.Dispatcher {
+    +RedoableDispatcher(PlayController)
+    +dispatch(): void
+  }
+
+  class RedoDispatcher extends cloudapps.mastermind.distributed.dispatchers.Dispatcher {
+    +RedoDispatcher(PlayController)
+    +dispatch(): void
+  }
+
+  class UndoableDispatcher extends cloudapps.mastermind.distributed.dispatchers.Dispatcher {
+    +UndoableDispatcher(PlayController)
+    +dispatch(): void
+  }
+
+  class UndoDispatcher extends cloudapps.mastermind.distributed.dispatchers.Dispatcher {
+    +UndoDispatcher(PlayController)
+    +dispatch(): void
+  }
+
+  RedoableDispatcher --> cloudapps.mastermind.controllers.PlayController
+  
+  RedoDispatcher --> cloudapps.mastermind.controllers.PlayController
+
+  UndoableDispatcher --> cloudapps.mastermind.controllers.PlayController
+
+  UndoDispatcher --> cloudapps.mastermind.controllers.PlayController
+
+}
+
+@enduml
