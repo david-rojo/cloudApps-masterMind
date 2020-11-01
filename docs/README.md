@@ -15,7 +15,7 @@
 
 ### 2. Design
 
-In this branch has been taken in account the change of the control, in the original code ([modelViewPresenter](https://github.com/david-rojo/cloudApps-masterMind/tree/modelViewPresenter) branch applying **mvp.pm.withDoubleDispatching** approach) the Views controlled to the controllers, but here the Controllers have the responsability of the game, now Views are "dummies", only execute methods managed for  Controllers to read and write information to the player.
+In this branch has been taken in account the change of the control, in the original code ([modelViewPresenter](https://github.com/david-rojo/cloudApps-masterMind/tree/modelViewPresenter) branch applying **mvp.pm.withDoubleDispatching** approach) the Views controlled the Controllers, but here the Controllers have the responsability of the game, now Views are "dummies", only execute methods managed for  Controllers to read and write information to the player.
 
 ### 3. Architecture
 
