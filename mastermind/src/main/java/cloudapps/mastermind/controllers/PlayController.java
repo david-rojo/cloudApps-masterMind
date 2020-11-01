@@ -7,7 +7,6 @@ import cloudapps.mastermind.models.Result;
 import cloudapps.mastermind.models.State;
 import cloudapps.mastermind.types.Color;
 import cloudapps.mastermind.types.Error;
-import cloudapps.mastermind.views.ColorView;
 import cloudapps.mastermind.views.PlayView;
 
 public class PlayController extends UseCaseController {
@@ -50,7 +49,7 @@ public class PlayController extends UseCaseController {
 		} else {
 			ProposedCombination proposedCombination = new ProposedCombination();
 			for (int i = 0; i < proposal.length(); i++) {
-				Color color = ColorView.getInstance(proposal.charAt(i));
+				Color color = Color.getInstance(proposal.charAt(i));
 				if (color == null) {
 					error = Error.WRONG_CHARACTERS;
 				} else {

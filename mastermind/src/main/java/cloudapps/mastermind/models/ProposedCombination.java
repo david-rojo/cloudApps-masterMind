@@ -3,14 +3,13 @@ package cloudapps.mastermind.models;
 import java.util.List;
 
 import cloudapps.mastermind.types.Color;
-import cloudapps.mastermind.views.ColorView;
 
 public class ProposedCombination extends Combination {
 
 	public ProposedCombination(String proposal) {
 		super();
 		for (int i = 0; i < proposal.length(); i++) {
-			Color color = ColorView.getInstance(proposal.charAt(i));
+			Color color = Color.getInstance(proposal.charAt(i));
 			this.getColors().add(color);
 		}
 	}
