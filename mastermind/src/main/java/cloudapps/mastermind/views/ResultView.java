@@ -1,7 +1,6 @@
-package cloudapps.mastermind.views.console;
+package cloudapps.mastermind.views;
 
 import cloudapps.mastermind.models.Result;
-import cloudapps.mastermind.views.MessageView;
 
 public class ResultView {
 

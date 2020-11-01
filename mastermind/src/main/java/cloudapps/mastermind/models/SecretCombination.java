@@ -3,6 +3,8 @@ package cloudapps.mastermind.models;
 import java.util.Collections;
 import java.util.Random;
 
+import cloudapps.mastermind.types.Color;
+
 public class SecretCombination extends Combination {
 
 	SecretCombination() {

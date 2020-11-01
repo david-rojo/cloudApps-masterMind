@@ -1,6 +1,7 @@
-package cloudapps.mastermind.models;
+package cloudapps.mastermind.types;
 
 public enum Error {
+
 	DUPLICATED,
 	WRONG_CHARACTERS,
 	WRONG_LENGTH,
@@ -9,5 +10,5 @@ public enum Error {
 	public boolean isNull(){
 		return this == Error.NULL;
 	}
-	
+
 }

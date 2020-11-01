@@ -1,14 +1,14 @@
 package cloudapps.mastermind.controllers;
 
-import cloudapps.mastermind.models.Color;
 import cloudapps.mastermind.models.Combination;
-import cloudapps.mastermind.models.Error;
 import cloudapps.mastermind.models.Game;
 import cloudapps.mastermind.models.ProposedCombination;
 import cloudapps.mastermind.models.Result;
 import cloudapps.mastermind.models.State;
-import cloudapps.mastermind.views.console.ColorView;
-import cloudapps.mastermind.views.console.PlayView;
+import cloudapps.mastermind.types.Color;
+import cloudapps.mastermind.types.Error;
+import cloudapps.mastermind.views.ColorView;
+import cloudapps.mastermind.views.PlayView;
 
 public class PlayController extends UseCaseController {
 

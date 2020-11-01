@@ -2,7 +2,7 @@ package cloudapps.mastermind.controllers;
 
 import cloudapps.mastermind.models.Game;
 import cloudapps.mastermind.models.State;
-import cloudapps.mastermind.views.console.ResumeView;
+import cloudapps.mastermind.views.ResumeView;
 
 public class ResumeController extends UseCaseController {
 

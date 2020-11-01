@@ -1,7 +1,7 @@
-package cloudapps.mastermind.views.console;
+package cloudapps.mastermind.views;
 
-import cloudapps.mastermind.models.Color;
 import cloudapps.mastermind.models.ProposedCombination;
+import cloudapps.mastermind.types.Color;
 import cloudapps.utils.Console;
 
 public class ProposedCombinationView {

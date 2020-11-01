@@ -1,7 +1,6 @@
-package cloudapps.mastermind.views.console;
+package cloudapps.mastermind.views;
 
 import cloudapps.mastermind.models.SecretCombination;
-import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.Console;
 
 public class SecretCombinationView {

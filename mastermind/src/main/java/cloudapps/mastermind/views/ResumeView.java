@@ -1,6 +1,5 @@
-package cloudapps.mastermind.views.console;
+package cloudapps.mastermind.views;
 
-import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.YesNoDialog;
 
 public class ResumeView {

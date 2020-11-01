@@ -2,7 +2,8 @@ package cloudapps.mastermind.models;
 
 import java.util.List;
 
-import cloudapps.mastermind.views.console.ColorView;
+import cloudapps.mastermind.types.Color;
+import cloudapps.mastermind.views.ColorView;
 
 public class ProposedCombination extends Combination {
 

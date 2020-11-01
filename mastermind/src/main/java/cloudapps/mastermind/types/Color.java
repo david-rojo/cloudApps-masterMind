@@ -1,6 +1,7 @@
-package cloudapps.mastermind.models;
+package cloudapps.mastermind.types;
 
 public enum Color {
+
 	RED, 
 	BLUE, 
 	YELLOW, 
@@ -8,8 +9,8 @@ public enum Color {
 	ORANGE, 
 	PURPLE;
 
-	static int length() {
+	public static int length() {
 		return Color.values().length;
 	}
-	
+
 }

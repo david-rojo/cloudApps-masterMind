@@ -1,9 +1,8 @@
-package cloudapps.mastermind.views.console;
+package cloudapps.mastermind.views;
 
-import cloudapps.mastermind.models.Error;
 import cloudapps.mastermind.models.ProposedCombination;
 import cloudapps.mastermind.models.Result;
-import cloudapps.mastermind.views.MessageView;
+import cloudapps.mastermind.types.Error;
 import cloudapps.utils.Console;
 
 public class PlayView {

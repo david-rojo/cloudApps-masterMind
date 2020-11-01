@@ -1,15 +1,28 @@
 package cloudapps.mastermind.views;
 
-import cloudapps.mastermind.models.Color;
+import cloudapps.mastermind.types.Color;
+import cloudapps.utils.Console;
 
 public class ColorView {
-	
+
 	public static final char[] INITIALS = {'r', 'b', 'y', 'g', 'o', 'p'};
 
 	protected Color color;
 
 	public ColorView(Color color) {
 		this.color = color;
+	}
+
+	static String allInitials() {
+		String result = "";
+		for(char character: ColorView.INITIALS) {
+			result += character;
+		}
+		return result;
+	}
+
+	public char getInitial() {
+		return ColorView.INITIALS[this.color.ordinal()];
 	}
 
 	public static Color getInstance(char character) {
@@ -20,13 +33,9 @@ public class ColorView {
 		}
 		return null;
 	}
-	
-	public static String allInitials() {
-		String result = "";
-		for(char character: ColorView.INITIALS) {
-			result += character;
-		}
-		return result;
+
+	void write() {
+		new Console().write(ColorView.INITIALS[this.color.ordinal()]);
 	}
 
 }

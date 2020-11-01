@@ -1,6 +1,4 @@
-package cloudapps.mastermind.views.console;
-
-import cloudapps.mastermind.views.MessageView;
+package cloudapps.mastermind.views;
 
 public class StartView {
 
