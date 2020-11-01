@@ -3,6 +3,11 @@ package cloudapps.mastermind.models;
 public enum Error {
 	DUPLICATED,
 	WRONG_CHARACTERS,
-	WRONG_LENGTH;
+	WRONG_LENGTH,
+	NULL;
+
+	public boolean isNull(){
+		return this == Error.NULL;
+	}
 	
 }

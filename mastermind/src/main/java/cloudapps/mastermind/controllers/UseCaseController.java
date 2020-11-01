@@ -13,9 +13,5 @@ public abstract class UseCaseController {
 		this.state = state;
 	}
 
-	public void next() {
-		this.state.next();
-	}
-
-	public abstract void accept(ControllerVisitor controllerVisitor);
+	public abstract void control();
 }

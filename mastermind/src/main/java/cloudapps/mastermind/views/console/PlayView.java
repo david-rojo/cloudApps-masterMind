@@ -1,32 +1,48 @@
 package cloudapps.mastermind.views.console;
 
-import cloudapps.mastermind.controllers.PlayController;
+import cloudapps.mastermind.models.Error;
 import cloudapps.mastermind.models.ProposedCombination;
+import cloudapps.mastermind.models.Result;
 import cloudapps.mastermind.views.MessageView;
 import cloudapps.utils.Console;
 
 public class PlayView {
+	
+	public String readProposedCombination() {
+		return new ProposedCombinationView().read();
+	}
 
-	public boolean interact(PlayController playController) {
-		ProposedCombination proposedCombination = new ProposedCombination();
-		ProposedCombinationView proposedCombinationView = new ProposedCombinationView(proposedCombination);
-		proposedCombinationView.read();
-		playController.addProposedCombination(proposedCombination);
+	public void writeErrorProposedCombination(Error error) {
+		new ErrorView(error).writeln();		
+	}
+	
+	public void writeTitleProposedCombination() {
+		MessageView.PROPOSED_COMBINATION.write();
+	}
+	
+	public void writeAttempts(int attempts) {
 		Console.instance().writeln();
-		MessageView.ATTEMPTS.writeln(playController.getAttempts());
+		MessageView.ATTEMPTS.writeln(attempts);		
+	}
+	
+	public void writeSecretCombination() {
 		new SecretCombinationView().writeln();
-		for (int i = 0; i < playController.getAttempts(); i++) {
-			new ProposedCombinationView(playController.getProposedCombination(i)).write();
-			new ResultView(playController.getResult(i)).writeln();
-		}
-		if (playController.isWinner()) {
-			MessageView.WINNER.writeln();
-			return true;
-		} else if (playController.isLooser()) {
-			MessageView.LOOSER.writeln();
-			return true;
-		}
-		return false;
+	}
+	
+	public void writeProposedCombination(ProposedCombination proposedCombination) {
+		new ProposedCombinationView().write(proposedCombination);		
+	}
+	
+	public void writeResult(Result result) {
+		new ResultView().writeln(result);	
+	}
+
+	public void writeWinner() {
+		MessageView.WINNER.writeln();		
+	}
+
+	public void writeLooser() {
+		MessageView.LOOSER.writeln();
 	}
 
 }

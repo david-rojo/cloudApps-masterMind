@@ -6,7 +6,7 @@ import cloudapps.utils.Console;
 
 public class SecretCombinationView {
 
-	public SecretCombinationView() {
+	SecretCombinationView() {
 		super();
 	}
 

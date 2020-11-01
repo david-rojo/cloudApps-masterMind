@@ -2,6 +2,7 @@ package cloudapps.mastermind.controllers;
 
 import cloudapps.mastermind.models.Game;
 import cloudapps.mastermind.models.State;
+import cloudapps.mastermind.views.console.StartView;
 
 public class StartController extends UseCaseController {
 
@@ -10,8 +11,9 @@ public class StartController extends UseCaseController {
 	}
 
 	@Override
-	public void accept(ControllerVisitor controllerVisitor) {
-		controllerVisitor.visit(this);
+	public void control() {
+		this.state.next();
+		new StartView().write();
 	}
 
 }
