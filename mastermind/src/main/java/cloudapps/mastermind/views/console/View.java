@@ -21,13 +21,7 @@ public class View extends cloudapps.mastermind.views.View implements ControllerV
 	
 	@Override
 	public void interact(UseCaseController controller) {
-		if (controller instanceof StartController) {
-			this.startView.interact((StartController) controller);
-		} else if (controller instanceof PlayController) {
-			this.playView.interact((PlayController) controller);
-		} else {
-			this.resumeView.interact((ResumeController) controller);
-		}
+		controller.accept(this);
 	}
 
 	@Override
