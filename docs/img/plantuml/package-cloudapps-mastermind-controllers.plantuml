@@ -1,0 +1,72 @@
+@startuml Package **cloudapps.mastermind.controllers**
+
+package "cloudapps.mastermind.controllers" {
+
+  class Logic {
+    -Map<StateValue, UseCaseController> controllers
+    -Game game
+    -State state
+    +Logic()
+    +getController(): UseCaseController
+  }
+
+  class PlayController extends UseCaseController {
+      +PlayController(Game,State)
+      -addProposedCombination(ProposedCombination): void
+      +control(): void
+      -getAttempts(): int
+      -getProposedCombination(int): ProposedCombination
+      -getResult(int): Result
+      -isLooser(): boolean
+      -isValidProposedCombination(String): Error
+      -isWinner(): boolean
+  }
+
+  class ResumeController extends UseCaseController {
+    +ResumeController(Game,State)
+    +control(): void
+    -resume(boolean): void
+  }
+
+  class StartController extends UseCaseController {
+    +StartController(Game,State)
+    +control(): void
+  }
+
+  abstract UseCaseController {
+     #Game game
+     #State state
+     ~UseCaseController(Game,State)
+     +{abstract}control(): void
+  }
+
+  Logic *--> cloudapps.mastermind.models.Game
+  Logic *--> cloudapps.mastermind.models.State
+  Logic *--> cloudapps.mastermind.models.StateValue
+  Logic *--> UseCaseController
+  Logic ..> java.util.Map
+  Logic ..> java.util.HashMap
+
+  PlayController ..> cloudapps.mastermind.models.Combination
+  PlayController ..> cloudapps.mastermind.models.Game
+  PlayController ..> cloudapps.mastermind.types.Color
+  PlayController ..> cloudapps.mastermind.types.Error
+  PlayController ..> cloudapps.mastermind.models.ProposedCombination
+  PlayController ..> cloudapps.mastermind.models.Result
+  PlayController ..> cloudapps.mastermind.models.State
+  PlayController ..> cloudapps.mastermind.views.PlayView
+
+  ResumeController ..> cloudapps.mastermind.models.Game
+  ResumeController ..> cloudapps.mastermind.models.State
+  ResumeController ..> cloudapps.mastermind.views.ResumeView
+
+  StartController ..> cloudapps.mastermind.models.Game
+  StartController ..> cloudapps.mastermind.models.State
+  StartController ..> cloudapps.mastermind.views.StartView
+
+  UseCaseController *--> cloudapps.mastermind.models.Game
+  UseCaseController *--> cloudapps.mastermind.models.State
+  
+}
+
+@enduml

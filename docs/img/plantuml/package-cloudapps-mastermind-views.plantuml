@@ -1,0 +1,98 @@
+@startuml Package **cloudapps.mastermind.views**
+
+package "cloudapps.mastermind.views" {
+
+  class ColorView {
+    ~allInitials(): String
+    #Color Color
+    +ColorView(Color)
+    +getInitial(): char
+    ~write(): void
+  }
+  
+  class ErrorView {
+    +{static}{final} String[] MESSAGES
+    #Error error
+    +ErrorView(Error)
+    +getMessage(): String
+    ~writeln(): void
+  }
+
+  enum MessageView {
+    ATTEMPTS
+    LOOSER
+    PROPOSED_COMBINATION
+    RESULT
+    RESUME
+    SECRET
+    TITLE
+    -String message
+    -MessageView(String)
+    +write(): void
+    +writeln(): void
+    +writeln(int): void
+    +writeln(int, int): void
+  }
+  
+  class PlayView {
+    +readProposedCombination(): String
+    +writeAttempts(int): void
+    +writeErrorProposedCombination(Error): void
+    +writeLooser(): void
+    +writeProposedCombination(ProposedCombination): void
+    +writeResult(Result): void
+    +writeSecretCombination(): void
+    +writeTitleProposedCombination(): void
+    +writeWinner(): void
+  }
+
+  class ProposedCombinationView {
+    ~ProposedCombinationView()
+    ~write(ProposedCombination): void
+    ~read(): String
+  }
+
+  class ResultView {
+    +writeln(Result): void
+  }
+  
+  class ResumeView {
+    +read(): boolean
+  }
+
+  class SecretCombinationView {
+    +SecretCombinationView()
+    +writeln(): void
+  }
+
+  class StartView {
+    +write(): void
+  }  
+
+  ColorView *--> cloudapps.mastermind.types.Color
+  ColorView ..> cloudapps.utils.Console
+
+  ErrorView *--> cloudapps.mastermind.types.Error
+  ErrorView ..> cloudapps.utils.Console
+
+  MessageView ..> cloudapps.utils.Console
+
+  PlayView ..> cloudapps.mastermind.models.ProposedCombination
+  PlayView ..> cloudapps.mastermind.models.Result
+  PlayView ..> cloudapps.mastermind.types.Error
+  PlayView ..> cloudapps.utils.Console
+
+  ProposedCombinationView ..> cloudapps.mastermind.models.ProposedCombination
+  ProposedCombinationView ..> cloudapps.mastermind.types.Color
+  ProposedCombinationView ..> cloudapps.utils.Console
+
+  ResultView ..> cloudapps.mastermind.models.Result
+
+  ResultView ..> cloudapps.utils.YesNoDialog
+
+  SecretCombinationView ..> cloudapps.mastermind.models.SecretCombination
+  SecretCombinationView ..> cloudapps.utils.Console
+  
+}
+
+@enduml

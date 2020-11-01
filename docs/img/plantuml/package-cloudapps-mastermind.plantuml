@@ -1,0 +1,17 @@
+@startuml Package **cloudapps.mastermind**
+
+package "cloudapps.mastermind" {
+  
+  class MasterMind {
+    -Logic logic
+    +MasterMind()
+    #play():void 
+    +{static}main(String[]): void
+  }
+
+  MasterMind *--> cloudapps.mastermind.controllers.Logic
+  MasterMind ..> cloudapps.mastermind.controllers.UseCaseController
+  
+}
+
+@enduml

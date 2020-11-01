@@ -1,0 +1,35 @@
+@startuml Package **cloudapps.utils**
+
+package "cloudapps.utils" {
+  
+  class Console {
+    +{static}Console console
+    -BufferedReader bufferedReader
+    +{static} instance(): Console    
+    +readChar(String): char
+    +readInt(String): int
+    +readString(): String
+    +readString(String): String
+    +write(char): void
+    +write(String): void
+    +writeError(String): void
+    +writeln(): void
+    +writeln(String): void
+  }
+  
+  class YesNoDialog {
+    -{static}final char AFFIRMATIVE
+    -{static}final char NEGATIVE
+    -{static}final String QUESTION
+    -{static}final String MESSAGE
+    -{static}isAfirmative(char): boolean
+    -{static}isNegative(char): boolean
+    +read(): boolean
+    +read(String): boolean
+  }
+  
+  Console ..> java.io.BufferedReader
+  Console ..> java.io.InputStreamReader
+}
+
+@enduml
