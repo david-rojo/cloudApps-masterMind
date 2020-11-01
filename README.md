@@ -73,7 +73,7 @@
   </tr>
    <tr>
     <td class="tg-9wq8"><b>MVC Architecture</b></td>
-    <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pv">mvp.pv</a> <i>(Work in progress)</i></td>
+    <td class="tg-c3ow"><a href="https://github.com/david-rojo/cloudApps-masterMind/tree/mvp.pv">mvp.pv</a></td>
     <td class="tg-baqh">branch</td>
     <td class="tg-0pky">Baile de la Triada<br>Los controladores mandan sobre las vistas</td>
   </tr>
