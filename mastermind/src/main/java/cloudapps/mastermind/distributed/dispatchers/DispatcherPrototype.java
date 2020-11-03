@@ -20,8 +20,7 @@ public class DispatcherPrototype {
 	}
 
 	public void dispatch(FrameType frameType) {
-		Dispatcher d = this.dispatcherMap.get(frameType);
-		d.dispatch();
+		this.dispatcherMap.get(frameType).dispatch();
 	}
 
 	public void serve() {
